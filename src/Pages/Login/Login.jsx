@@ -11,8 +11,7 @@ const Login = () => {
 	const onSubmit = (data) => {
 		const { email, password } = data;
 		signInUser(email, password)
-			.then((result) => {
-				console.log(result.user);
+			.then(() => {
 				toast.success('Successfully Login');
 				navigate('/');
 			})
