@@ -11,8 +11,7 @@ const Register = () => {
 	const navigate = useNavigate();
 	const [passwordError, setPasswordError] = useState('');
 	const { register, handleSubmit } = useForm();
-	// const [registerUser, setRegisterUser] = useState("");
-	// const { name, image, email, password } = registerUser
+
 	const onSubmit = (data) => {
 		const { name, image, email, password } = data;
 
@@ -84,83 +83,54 @@ const Register = () => {
 							</h1>
 							<p>Enter your information to register</p>
 						</div>
-						{/* <form onSubmit={handleSubmit((data) => setRegisterUser(data))}> */}
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className="-mx-3">
 								<div className="w-full px-3 mb-2">
-									<label
-										htmlFor=""
-										className="text-xs font-semibold px-1">
-										Full Name
-									</label>
+									<label htmlFor="" className="text-xs font-semibold px-1"> Full Name </label>
 									<div className="flex">
 										<div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
 											<i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
 										</div>
-										<input
-											type="text"
-											{...register('name')}
+										<input type="text" {...register('name')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-											placeholder="Enter Full Name"
-											required />
+											placeholder="Enter Full Name" required />
 									</div>
 								</div>
 								<div className="w-full px-3 mb-2">
-									<label
-										htmlFor=""
-										className="text-xs font-semibold px-1">
-										Profile Picture
-									</label>
+									<label htmlFor="" className="text-xs font-semibold px-1"> Profile Picture </label>
 									<div className="flex">
 										<div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
 											<i className="mdi mdi-image-outline text-gray-400 text-lg"></i>
 										</div>
-										<input
-											type="text"
-											{...register('image')}
+										<input type="text" {...register('image')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-											placeholder="Enter Image Url"
-											required />
+											placeholder="Enter Image Url" required />
 									</div>
 								</div>
 							</div>
 							<div className="flex -mx-3">
 								<div className="w-full px-3 mb-2">
-									<label
-										htmlFor=""
-										className="text-xs font-semibold px-1">
-										Email
-									</label>
+									<label htmlFor="" className="text-xs font-semibold px-1"> Email </label>
 									<div className="flex">
 										<div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
 											<i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
 										</div>
-										<input
-											type="email"
-											{...register('email')}
+										<input type="email" {...register('email')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-											placeholder="Enter Email"
-											required />
+											placeholder="Enter Email" required />
 									</div>
 								</div>
 							</div>
 							<div className="flex -mx-3">
 								<div className="w-full px-3 mb-2">
-									<label
-										htmlFor=""
-										className="text-xs font-semibold px-1">
-										Password
-									</label>
+									<label htmlFor="" className="text-xs font-semibold px-1"> Password </label>
 									<div className="flex">
 										<div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
 											<i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
 										</div>
-										<input
-											type="password"
-											{...register('password')}
+										<input type="password" {...register('password')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-											placeholder="************"
-											required />
+											placeholder="************" required />
 									</div>
 								</div>
 							</div>

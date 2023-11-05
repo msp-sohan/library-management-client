@@ -11,6 +11,7 @@ import { createContext, useEffect, useState } from 'react';
 import auth from '../config/firebase.config';
 
 export const AuthContext = createContext(null);
+
 const googleProvider = new GoogleAuthProvider();
 
 // eslint-disable-next-line react/prop-types
@@ -28,10 +29,10 @@ const AuthProvider = ({ children }) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
-	const profileUpdate = (name, photo) => {
+	const profileUpdate = (name, image) => {
 		return updateProfile(auth.currentUser, {
 			displayName: name,
-			photoURL: photo,
+			photoURL: image,
 		});
 	};
 
