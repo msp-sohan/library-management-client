@@ -46,8 +46,8 @@ const Navbar = () => {
 		</>
 	);
 	return (
-		<div className=''>
-			<div className="flex py-3 justify-between items-center bg-indigo-500 container mx-auto">
+		<div className="lg:absolute z-10 left-0 right-0 ">
+			<div className="flex py-3 justify-between items-center bg-indigo-500 container mx-auto bg-opacity-60">
 				{/* Navbar Start */}
 				<div className="lg:hidden">
 					<div className="dropdown ">
