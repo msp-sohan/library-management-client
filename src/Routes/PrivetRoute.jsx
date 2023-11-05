@@ -16,8 +16,7 @@ const PrivetRoute = ({ children }) => {
 					strokeWidth="5"
 					animationDuration="0.75"
 					width="96"
-					visible={true}
-				/>
+					visible={true} />
 			</div>
 		);
 	}

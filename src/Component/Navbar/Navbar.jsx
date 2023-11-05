@@ -29,8 +29,8 @@ const Navbar = () => {
 					isPending
 						? 'pending'
 						: isActive
-						? 'active hover:border-b-2 border-b-white  text-white text-lg md:text-xl mx-3 rounded-none font-semibold border-b-2'
-						: 'hover:border-b-2 border-b-white  text-black text-lg md:text-xl mx-3 rounded-none '
+							? 'active hover:border-b-2 border-b-white  text-white text-lg md:text-xl mx-3 rounded-none font-semibold border-b-2'
+							: 'hover:border-b-2 border-b-white  text-black text-lg md:text-xl mx-3 rounded-none '
 				}>
 				Home
 			</NavLink>
@@ -40,8 +40,8 @@ const Navbar = () => {
 					isPending
 						? 'pending'
 						: isActive
-						? 'active hover:border-b-2 border-b-white  text-white text-lg md:text-xl  mx-3 rounded-none font-semibold border-b-2'
-						: 'hover:border-b-2 border-b-white  text-black text-lg md:text-xl  mx-3 rounded-none'
+							? 'active hover:border-b-2 border-b-white  text-white text-lg md:text-xl  mx-3 rounded-none font-semibold border-b-2'
+							: 'hover:border-b-2 border-b-white  text-black text-lg md:text-xl  mx-3 rounded-none'
 				}>
 				Add Product
 			</NavLink>
@@ -51,8 +51,8 @@ const Navbar = () => {
 					isPending
 						? 'pending'
 						: isActive
-						? 'active hover:border-b-2 border-b-white  text-white text-lg md:text-xl mx-3  rounded-none font-semibold border-b-2'
-						: 'hover:border-b-2 border-b-white  text-black text-lg md:text-xl mx-3 rounded-none '
+							? 'active hover:border-b-2 border-b-white  text-white text-lg md:text-xl mx-3  rounded-none font-semibold border-b-2'
+							: 'hover:border-b-2 border-b-white  text-black text-lg md:text-xl mx-3 rounded-none '
 				}>
 				My Cart
 			</NavLink>
@@ -74,8 +74,7 @@ const Navbar = () => {
 									strokeLinecap="round"
 									strokeLinejoin="round"
 									strokeWidth="2"
-									d="M4 6h16M4 12h16M4 18h7"
-								/>
+									d="M4 6h16M4 12h16M4 18h7" />
 							</svg>
 						</label>
 						<ul

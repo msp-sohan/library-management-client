@@ -102,8 +102,7 @@ const Register = () => {
 											{...register('name')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
 											placeholder="Enter Full Name"
-											required
-										/>
+											required />
 									</div>
 								</div>
 								<div className="w-full px-3 mb-2">
@@ -121,8 +120,7 @@ const Register = () => {
 											{...register('image')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
 											placeholder="Enter Image Url"
-											required
-										/>
+											required />
 									</div>
 								</div>
 							</div>
@@ -142,8 +140,7 @@ const Register = () => {
 											{...register('email')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
 											placeholder="Enter Email"
-											required
-										/>
+											required />
 									</div>
 								</div>
 							</div>
@@ -163,8 +160,7 @@ const Register = () => {
 											{...register('password')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
 											placeholder="************"
-											required
-										/>
+											required />
 									</div>
 								</div>
 							</div>

@@ -64,8 +64,7 @@ const Login = () => {
 											{...register('email')}
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
 											placeholder="Enter Email"
-											required
-										/>
+											required />
 									</div>
 								</div>
 							</div>
@@ -86,8 +85,7 @@ const Login = () => {
 											id="password"
 											className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
 											placeholder="************"
-											required
-										/>
+											required />
 									</div>
 								</div>
 							</div>
