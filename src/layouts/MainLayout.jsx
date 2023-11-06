@@ -1,14 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../Component/Navbar/Navbar';
-import { Toaster } from 'react-hot-toast';
 import Footer from '../Component/Footer/Footer';
 
 const MainLayout = () => {
 	return (
-		<div>
+		<div className='overflow-hidden bg-base-100'>
 			<Navbar></Navbar>
 			<Outlet></Outlet>
-			<Toaster></Toaster>
 			<Footer></Footer>
 		</div>
 	);

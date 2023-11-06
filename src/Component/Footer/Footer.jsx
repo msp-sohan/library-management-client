@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
+import logo from '../../assets/logo.png'
 
 const Footer = () => {
    return (
-      <div className="my-12">
-
-         <footer className="relative pt-8 p3-6">
+      <div className="mt-12">
+         <footer className="relative pt-8">
             <div className="">
                <div className="container mx-auto flex flex-wrap text-left lg:text-left bg-indigo-500 py-5 text-white">
                   <div className="w-full lg:w-6/12 px-4">
-                     <h4 className="text-3xl fonat-semibold text-blueGray-700">Lets keep in touch!</h4>
+                     {/* <h4 className="text-3xl fonat-semibold text-blueGray-700">Lets keep in touch!</h4> */}
+                     <Link to="/"><img src={logo} alt="" /></Link>
                      <h5 className="text-lg mt-4 mb-2 text-gray-950">
                         Find us on any of these platforms, we respond 1-2 business days.
                      </h5>
-                     <div className="mt-6 lg:mb-0 mb-6">
+                     <div className="mb-6">
                         <button className="text-blue-500 bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
                            <i className="fab fa-twitter"></i>
                         </button>
@@ -28,36 +29,36 @@ const Footer = () => {
                      </div>
                   </div>
 
-                  <div className="w-full lg:w-6/12 px-4">
-                     <div className="flex flex-wrap items-top mb-6">
+                  <div className="w-full lg:w-6/12 px-4 overflow-hidden">
+                     <div className="flex flex-wrap items-top mt-6 md:mt-0 mb-6">
                         <div className="w-full lg:w-4/12 px-4 ml-auto">
-                           <span className="block uppercase text-white text-sm font-semibold mb-2">Useful Links</span>
-                           <ul className="list-unstyled text-black">
+                           <span className="block uppercase text-white text-sm font-semibold mb-5">Useful Links</span>
+                           <ul className="list-unstyled">
                               <li>
-                                 <Link className="font-semibold block pb-2 text-md">About Us</Link>
+                                 <Link className=" hover:text-blue-800 font-semibold block pb-2 text-sm">About Us</Link>
                               </li>
                               <li>
-                                 <Link className="font-semibold block pb-2 text-md">Blog</Link>
+                                 <Link className=" hover:text-blue-800 font-semibold block pb-2 text-sm">Blog</Link>
                               </li>
                               <li>
-                                 <Link className="font-semibold block pb-2 text-md">FaceBook</Link>
+                                 <Link className=" hover:text-blue-800 font-semibold block pb-2 text-sm">Facebook</Link>
                               </li>
                            </ul>
                         </div>
-                        <div className="w-full lg:w-4/12 px-4">
-                           <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Other Resources</span>
+                        <div className="w-full lg:w-4/12 px-4 overflow-hidden">
+                           <span className="block uppercase text-sm font-semibold mb-5">Other Resources</span>
                            <ul className="list-unstyled">
                               <li>
-                                 <Link className="text-black hover:text-blueGray-800 font-semibold block pb-2 text-sm">MIT License</Link>
+                                 <Link className=" hover:text-blue-800 font-semibold block pb-2 text-sm">MIT License</Link>
                               </li>
                               <li>
-                                 <Link className="text-black hover:text-blueGray-800 font-semibold block pb-2 text-sm">Terms &amp; Conditions</Link>
+                                 <Link className=" hover:text-blue-800 font-semibold block pb-2 text-sm">Terms &amp; Conditions</Link>
                               </li>
                               <li>
-                                 <Link className="text-black hover:text-blueGray-800 font-semibold block pb-2 text-sm">Privacy Policy</Link>
+                                 <Link className=" hover:text-blue-800 font-semibold block pb-2 text-sm">Privacy Policy</Link>
                               </li>
                               <li>
-                                 <Link className="text-black hover:text-blueGray-800 font-semibold block pb-2 text-sm">Contact Us</Link>
+                                 <Link className=" hover:text-blue-800 font-semibold block pb-2 text-sm">Contact Us</Link>
                               </li>
                            </ul>
                         </div>

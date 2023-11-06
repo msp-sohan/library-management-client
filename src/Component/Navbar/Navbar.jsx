@@ -46,10 +46,10 @@ const Navbar = () => {
 		</>
 	);
 	return (
-		<div className="lg:absolute z-10 left-0 right-0 ">
-			<div className="flex py-3 justify-between items-center bg-indigo-500 container mx-auto bg-opacity-60">
+		<div className="lg:absolute left-0 right-0 z-50">
+			<div className="flex py-3 justify-between items-center bg-indigo-500 container mx-auto lg:bg-opacity-60">
 				{/* Navbar Start */}
-				<div className="lg:hidden">
+				<div className="lg:hidden z-50">
 					<div className="dropdown ">
 						<label tabIndex={0} className="btn btn-ghost btn-circle bg-gray-100 ml-2">
 							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +64,7 @@ const Navbar = () => {
 
 				{/* Navbar Center */}
 				<div className="md:pl-24 lg:pl-0">
-					<img src={logo} alt="" className='w-36 lg:w-44 ml-2' />
+					<Link to="/"><img src={logo} alt="" className='w-36 lg:w-44 ml-2' /></Link>
 				</div>
 
 				{/* Navbar End */}
@@ -88,7 +88,7 @@ const Navbar = () => {
 						</div>
 					</label>
 					{user && (
-						<ul tabIndex={0} className="menu absolute right-0 text-left menu-sm text-black space-y-3 dropdown-content mt-3 z-1 p-2 shadow bg-slate-200 rounded-box w-48">
+						<ul tabIndex={0} className="menu absolute right-0 text-left menu-sm text-black space-y-3 dropdown-content mt-3 z-50 p-2 shadow bg-slate-200 rounded-box w-48">
 							<h2 className="text-lg flex items-center gap-4">
 								<FaUserTie></FaUserTie> {user?.displayName ? user?.displayName : user?.email}
 							</h2>

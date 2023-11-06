@@ -40,21 +40,28 @@ body {
 }
 .swiper-button-prev::after {
 	color: #ffffff;
-	font-size: 20px;
+	font-size: 28px;
 	font-weight: 10px;
-	background-color: rgba(250, 235, 215, 0.212);
 	padding: 15px;
 	border-radius: 15px;
 }
 .swiper-button-next::after {
 	color: #ffffff;
-	font-size: 20px;
+	font-size: 28px;
 	font-weight: 10px;
-	background-color: rgba(250, 235, 215, 0.212);
 	padding: 15px;
 	border-radius: 15px;
 }
-
+.swiper-slide:nth-child(1n) {
+	background-color: transparent;
+}
+.swiper-button-prev:hover::after {
+	background-color: rgba(250, 235, 215, 0.212);
+}
+.swiper-button-next:hover::after {
+	background-color: rgba(250, 235, 215, 0.212);
+}
+/* 
 @media screen and (min-width: 769px) {
 	.swiper-button-next::after {
 		color: #ffffff;
@@ -72,4 +79,4 @@ body {
 		padding: 15px;
 		border-radius: 15px;
 	}
-}
+} */

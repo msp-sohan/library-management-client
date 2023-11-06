@@ -7,24 +7,20 @@ import ProtectedRoute from './ProtectedRoute';
 import AddBook from '../Pages/AddBook/AddBook';
 import AllBooks from '../Pages/AllBooks/AllBooks';
 import BorrowedBooks from '../Pages/BorrowedBooks/BorrowedBooks';
+import CategoryWiseBook from '../Pages/CategoryWiseBook/CategoryWiseBook';
+import SingleBook from '../Pages/SingleBook/SingleBook';
+import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <MainLayout></MainLayout>,
-		errorElement: <div>Error</div>,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				index: true,
 				element: <Home></Home>,
-			},
-			{
-				path: 'login',
-				element: <ProtectedRoute><Login></Login></ProtectedRoute>,
-			},
-			{
-				path: 'register',
-				element: <ProtectedRoute><Register></Register></ProtectedRoute>,
+				loader: () => fetch('../../public/category.json')
 			},
 			{
 				path: "addBook",
@@ -37,8 +33,24 @@ const router = createBrowserRouter([
 			{
 				path: "borrowedBooks",
 				element: <BorrowedBooks></BorrowedBooks>
+			},
+			{
+				path: 'categoriesBook/:categoryName',
+				element: <CategoryWiseBook></CategoryWiseBook>
+			},
+			{
+				path: "categoriesBook/:categoryName/:id",
+				element: <SingleBook></SingleBook>
 			}
 		],
+	},
+	{
+		path: '/login',
+		element: <ProtectedRoute><Login></Login></ProtectedRoute>,
+	},
+	{
+		path: '/register',
+		element: <ProtectedRoute><Register></Register></ProtectedRoute>,
 	},
 ]);
 
