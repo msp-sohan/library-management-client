@@ -3,14 +3,14 @@ import logo from '../../assets/logo.png'
 
 const Footer = () => {
    return (
-      <div className="mt-12">
+      <div className="mt-12 dark:bg-gray-800">
          <footer className="relative pt-8">
-            <div className="">
-               <div className="container mx-auto flex flex-wrap text-left lg:text-left bg-indigo-500 py-5 text-white">
+            <div className="dark:bg-gray-800">
+               <div className="container mx-auto flex flex-wrap text-left lg:text-left bg-indigo-500 dark:bg-gray-700 rounded-md py-5 text-white">
                   <div className="w-full lg:w-6/12 px-4">
                      {/* <h4 className="text-3xl fonat-semibold text-blueGray-700">Lets keep in touch!</h4> */}
                      <Link to="/"><img src={logo} alt="" /></Link>
-                     <h5 className="text-lg mt-4 mb-2 text-gray-950">
+                     <h5 className="text-lg mt-4 mb-6 text-gray-950 dark:text-indigo-400">
                         Find us on any of these platforms, we respond 1-2 business days.
                      </h5>
                      <div className="mb-6">

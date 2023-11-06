@@ -17,7 +17,7 @@ const Banner = () => {
          <Swiper navigation={true} modules={[Navigation]} className="mySwiper bg-base-100">
             {/* 1st slide */}
             <SwiperSlide>
-               <div className='relative flex flex-col justify-center bg-base-100'>
+               <div className='relative flex flex-col justify-center bg-base-100 dark:bg-gray-800'>
                   <div className='bg-black bg-opacity-90 '>
                      <img src="https://quomodosoft.com/html/library/images/slide/slide1.jpg" alt="" className='opacity-40 ' />
                   </div>

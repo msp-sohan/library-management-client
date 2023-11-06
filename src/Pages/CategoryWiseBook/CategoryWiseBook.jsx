@@ -21,7 +21,7 @@ const CategoryWiseBook = () => {
          </div>
          {/* Books */}
          <div className="max-w-[1000px] mx-auto mt-20 grid grid-cols-1 lg:grid-cols-2 gap-5">
-
+            {/* first book */}
             <div className="border border-black hover:border-yellow-600 hover:scale-105 duration-700 flex gap-4 max-w-[600px] h-[300px] p-2 mx-2 md:mx-auto">
                <div className="f;ex-1">
                   <img src="https://quomodosoft.com/html/library/images/book/book-xs-1.jpg" alt="" className="h-full" />

@@ -8,13 +8,13 @@ const AboutUs = () => {
    return (
       <div className='my-20 container mx-auto px-2'>
          <div className='text-center '>
-            <h1 className='text-5xl font-semibold'>About <span className='text-blue-500'>Us</span></h1>
+            <h1 className='text-5xl font-semibold dark:text-white'>About <span className='text-blue-500'>Us</span></h1>
             <div className='flex justify-center items-center py-5'>
-               <hr className='border border-black w-96' />
-               <RxBox className='rotate-45 mx-5 text-2xl'></RxBox>
-               <hr className='border border-black w-96' />
+               <hr className='border border-black w-96 dark:border-indigo-400' />
+               <RxBox className='rotate-45 mx-5 text-2xl dark:text-white'></RxBox>
+               <hr className='border border-black w-96 dark:border-indigo-500' />
             </div>
-            <p className='text-lg'>Welcome to our library! We are passionate about books and dedicated to providing you with the best reading experience.</p>
+            <p className='text-lg dark:text-white'>Welcome to our library! We are passionate about books and dedicated to providing you with the best reading experience.</p>
          </div>
 
          <div className='grid grid-cols-1 lg:grid-cols-7 xl:grid-cols-2 gap-5 mt-12'>
@@ -25,7 +25,7 @@ const AboutUs = () => {
                      <RxBox className='text-yellow-600 bg-yellow-600 rotate-45'></RxBox>
                      <RxBox className='text-yellow-600 bg-yellow-600 rotate-45'></RxBox>
                   </div>
-                  <p className='text-[18px] pt-5'>Our library offers a diverse collection of books that cater to all your interests. We believe that reading is not just a hobby but a way of life.</p>
+                  <p className='text-[18px] pt-5 dark:text-white'>Our library offers a diverse collection of books that cater to all your interests. We believe that reading is not just a hobby but a way of life.</p>
                </div>
                <div className='grid grid-cols-1 md:grid-cols-2 gap-5 mt-16'>
                   <div className='bg-gray-200 p-2 rounded-md hover:shadow-2xl hover:shadow-blue-500'>

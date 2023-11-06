@@ -1,4 +1,5 @@
 import { RxBox } from "react-icons/rx";
+import BorrowBookCard from "./BorrowBookCard";
 
 const BorrowedBooks = () => {
    return (
@@ -16,6 +17,9 @@ const BorrowedBooks = () => {
                      <hr className='bg-black w-20 xl:w-40' />
                   </div>
                </div>
+            </div>
+            <div>
+               <BorrowBookCard></BorrowBookCard>
             </div>
          </div>
       </div>
