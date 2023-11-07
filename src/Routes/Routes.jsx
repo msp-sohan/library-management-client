@@ -21,7 +21,7 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: <Home></Home>,
-				loader: () => fetch('../../public/category.json')
+				loader: () => fetch('http://localhost:5000/categories')
 			},
 			{
 				path: "addBook",

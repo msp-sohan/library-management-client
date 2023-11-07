@@ -1,0 +1,178 @@
+[
+	{
+		"id": 1,
+		"BookName": "The History of Ancient Civilizations",
+		"AuthorName": "John Smith",
+		"Category": "History",
+		"Quantity": 5,
+		"Ratings": 4,
+		"ShortDescription": "Explore the rise and fall of ancient civilizations.",
+		"LongDescription": "Embark on a journey through time and uncover the mysteries of long-lost empires in this captivating historical account.",
+		"BookImage": "https://cdn.exoticindia.com/images/products/original/books-2019/ube130.jpg"
+	},
+	{
+		"id": 2,
+		"BookName": "Fantasy Adventures in a Magical Land",
+		"AuthorName": "Alice Johnson",
+		"Category": "Fantasy",
+		"Quantity": 3,
+		"Ratings": 4,
+		"ShortDescription": "Discover a world of magic, mythical creatures, and epic quests.",
+		"LongDescription": "Step into a realm where dragons soar through the skies, and heroes embark on incredible adventures. In this enchanting world, magic is real, and the line between reality and fantasy blurs.",
+		"BookImage": "https://m.media-amazon.com/images/I/51WjITl6LCL.jpg"
+	},
+	{
+		"id": 3,
+		"BookName": "The Galactic Odyssey",
+		"AuthorName": "Michael Wilson",
+		"Category": "Science_Fiction",
+		"Quantity": 2,
+		"Ratings": 4,
+		"ShortDescription": "Embark on an epic journey through the cosmos.",
+		"LongDescription": "Blast off into the unknown in this gripping science fiction masterpiece. Join a crew of intrepid explorers as they traverse the vastness of space, encountering alien civilizations, and facing the mysteries of the universe.",
+		"BookImage": "https://m.media-amazon.com/images/I/519eeyFc+nL.jpg"
+	},
+	{
+		"id": 4,
+		"BookName": "Romantic Escapades in Paris",
+		"AuthorName": "Emily Davis",
+		"Category": "Romance",
+		"Quantity": 7,
+		"Ratings": 4,
+		"ShortDescription": "Experience love, passion, and romance in the City of Love.",
+		"LongDescription": "Set against the enchanting backdrop of Paris, this romance novel follows the lives of two lovers as they navigate the complexities of love, desire, and destiny. A tale that will tug at your heartstrings.",
+		"BookImage": "https://m.media-amazon.com/images/I/710gf8ntq3L._AC_UF894,1000_QL80_.jpg"
+	},
+	{
+		"id": 5,
+		"BookName": "The Secrets of Ancient Egypt",
+		"AuthorName": "David Clark",
+		"Category": "History",
+		"Quantity": 6,
+		"Ratings": 4,
+		"ShortDescription": "Uncover the hidden treasures and enigmas of ancient Egypt.",
+		"LongDescription": "Embark on an archaeological adventure through the sands of Egypt. This book reveals the fascinating secrets of a civilization that left behind magnificent pyramids, enigmatic hieroglyphics, and the legacy of the pharaohs.",
+		"BookImage": "https://m.media-amazon.com/images/I/51JVFV719WL._AC_UF1000,1000_QL80_.jpg"
+	},
+	{
+		"id": 6,
+		"BookName": "The Enchanted Forest",
+		"AuthorName": "Jennifer Evans",
+		"Category": "Fantasy",
+		"Quantity": 4,
+		"Ratings": 4,
+		"ShortDescription": "Journey into a magical forest filled with wonder and enchantment.",
+		"LongDescription": "Enter a world where ancient trees whisper secrets, and mythical creatures dwell. This captivating fantasy novel takes you deep into an enchanted forest, where adventure and mystery await at every turn.",
+		"BookImage": "https://www.creativeparamita.com/wp-content/uploads/2023/02/Enchanted-Forest.jpg"
+	},
+	{
+		"id": 7,
+		"BookName": "Voyage to the Stars",
+		"AuthorName": "Daniel Brown",
+		"Category": "Science_Fiction",
+		"Quantity": 9,
+		"Ratings": 4,
+		"ShortDescription": "Embark on a thrilling voyage to distant galaxies and alien worlds.",
+		"LongDescription": "Join an intrepid crew as they pilot their starship through uncharted regions of the cosmos. Encounter strange beings, unravel cosmic mysteries, and witness the boundless wonders of the universe.",
+		"BookImage": "https://i.ibb.co/3CrHKGs/Voyage-to-the-Stars.jpg"
+	},
+	{
+		"id": 8,
+		"BookName": "A Love Story to Remember",
+		"AuthorName": "Olivia Anderson",
+		"Category": "Romance",
+		"Quantity": 5,
+		"Ratings": 4,
+		"ShortDescription": "A tale of love, destiny, and second chances.",
+		"LongDescription": "Follow the journey of two souls whose paths cross under the starlit skies. This heartwarming romance novel will sweep you off your feet and make you believe in the power of true love.",
+		"BookImage": "https://m.media-amazon.com/images/I/61CvJtVPBJL._AC_UF1000,1000_QL80_.jpg"
+	},
+	{
+		"id": 9,
+		"BookName": "Ancient Myths and Legends",
+		"AuthorName": "Sophia Martinez",
+		"Category": "History",
+		"Quantity": 4,
+		"Ratings": 4,
+		"ShortDescription": "Dive into the rich tapestry of myths and legends from around the world.",
+		"LongDescription": "Discover the fascinating stories that have been passed down through generations. From gods and heroes to epic quests, this book delves into the captivating narratives that have shaped cultures across time.",
+		"BookImage": "https://www.allyoucanbooks.com/sites/default/files/imagecache/book_cover_medium/ebook-cover/Myths-and-Legends-of-Ancient-Greece-and-Rome-by-EMBerens.jpg"
+	},
+	{
+		"id": 10,
+		"BookName": "Kingdom of Enchantment",
+		"AuthorName": "Nathan Turner",
+		"Category": "Fantasy",
+		"Quantity": 6,
+		"Ratings": 4,
+		"ShortDescription": "Embark on a magical journey to a kingdom where dreams come to life.",
+		"LongDescription": "In the Kingdom of Enchantment, dreams and reality intertwine. This fantasy novel takes you on a wondrous adventure through a realm where castles reach the clouds, and mythical creatures roam freely.",
+		"BookImage": "https://www.creativeparamita.com/wp-content/uploads/2023/04/Journey-to-the-Enchanted-Kingdom-442x705.jpg"
+	},
+	{
+		"id": 11,
+		"BookName": "The Cosmic Chronicles",
+		"AuthorName": "Eric Baker",
+		"Category": "Science_Fiction",
+		"Quantity": 3,
+		"Ratings": 4,
+		"ShortDescription": "Embark on an interstellar voyage to the edge of the universe.",
+		"LongDescription": "Join an elite crew of explorers as they push the boundaries of space exploration. The Cosmic Chronicles is a gripping odyssey through the cosmos, filled with extraterrestrial encounters and breathtaking discoveries.",
+		"BookImage": "https://notionpress.com/coveruploads/372599858resize_cover_501057.png"
+	},
+	{
+		"id": 12,
+		"BookName": "Whispers of Love",
+		"AuthorName": "Lily Collins",
+		"Category": "Romance",
+		"Quantity": 8,
+		"Ratings": 4,
+		"ShortDescription": "A tale of love, heartache, and the healing power of second chances.",
+		"LongDescription": "In Whispers of Love, two hearts find solace and healing in the most unexpected of places. Set against the backdrop of a charming coastal town, this romance novel will warm your heart and rekindle your belief in love's transformative magic.",
+		"BookImage": "https://m.media-amazon.com/images/I/51W65Z8225L._AC_UF894,1000_QL80_.jpg"
+	},
+	{
+		"id": 13,
+		"BookName": "Lost Civilizations of the Amazon",
+		"AuthorName": "Samuel Walker",
+		"Category": "History",
+		"Quantity": 7,
+		"Ratings": 4,
+		"ShortDescription": "Unravel the mysteries of the Amazon rainforest and its ancient inhabitants.",
+		"LongDescription": "Journey deep into the heart of the Amazon and uncover the secrets of civilizations lost to time. From hidden cities to enigmatic artifacts, this book paints a vivid picture of the Amazon's rich historical tapestry.",
+		"BookImage": "https://m.media-amazon.com/images/I/71wrkjsC1qL._AC_UF894,1000_QL80_.jpg"
+	},
+	{
+		"id": 14,
+		"BookName": "Legends of the Elders",
+		"AuthorName": "Sophie Roberts",
+		"Category": "Fantasy",
+		"Quantity": 5,
+		"Ratings": 4,
+		"ShortDescription": "Immerse yourself in the captivating tales of the Elders and their legendary adventures.",
+		"LongDescription": "Legends of the Elders is a collection of mythical stories that have been passed down through generations. These timeless tales feature heroes, heroines, and mythical creatures, all set against the backdrop of a fantastical world.",
+		"BookImage": "https://i.harperapps.com/hcanz/covers/9780732288488/y648.jpg"
+	},
+	{
+		"id": 15,
+		"BookName": "The Interstellar Odyssey",
+		"AuthorName": "Brian Foster",
+		"Category": "Science_Fiction",
+		"Quantity": 4,
+		"Ratings": 4,
+		"ShortDescription": "Embark on an interstellar journey to uncharted galaxies and alien civilizations.",
+		"LongDescription": "Join a crew of explorers as they navigate the cosmos in search of new horizons. The Interstellar Odyssey is a thrilling space adventure that will take you beyond the stars and into the unknown.",
+		"BookImage": "https://images.booksense.com/images/551/263/9798395263551.jpg"
+	},
+	{
+		"id": 16,
+		"BookName": "Whispers of Eternity",
+		"AuthorName": "Isabella Parker",
+		"Category": "Romance",
+		"Quantity": 6,
+		"Ratings": 4,
+		"ShortDescription": "A timeless tale of love, destiny, and the enduring power of the human heart.",
+		"LongDescription": "In Whispers of Eternity, love transcends time and space. Two souls destined to be together find each other across lifetimes. This romantic saga will sweep you off your feet and remind you that love knows no bounds.",
+		"BookImage": "https://www.ananda.org/wp-content/uploads/2015/01/whispers_from_eternity_400.jpg"
+	}
+]
