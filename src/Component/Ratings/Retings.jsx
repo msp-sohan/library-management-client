@@ -1,13 +1,17 @@
 import "./rating.css";
 import ReactStars from "react-rating-stars-component";
 
-const Retings = () => {
-   const secondExample = {
+
+
+// eslint-disable-next-line react/prop-types
+const Retings = ({ rating }) => {
+
+   const ratings = {
       size: 20,
       count: 5,
       color: "black",
       activeColor: "#da9100",
-      value: 4.5,
+      value: rating,
       isHalf: true,
       emptyIcon: <i className="far fa-star" />,
       halfIcon: <i className="fa fa-star-half-alt" />,
@@ -18,7 +22,7 @@ const Retings = () => {
    };
    return (
       <div className="rating">
-         <ReactStars {...secondExample} />
+         <ReactStars {...ratings} />
       </div>
    );
 }

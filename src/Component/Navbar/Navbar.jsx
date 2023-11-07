@@ -96,7 +96,7 @@ const Navbar = () => {
 				</div>
 
 				{/* User Information */}
-				<div className='flex'>
+				<div className='flex items-center'>
 					<div className="flex justify-center items-center mr-5">
 						<button className="bg-gray-200 p-2 dark:bg-gray-600 btn btn-circle rounded-3xl" onClick={handleThemeSwitch}>
 							<MdDarkMode className="text-2xl dark:text-white"></MdDarkMode>

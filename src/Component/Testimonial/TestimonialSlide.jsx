@@ -16,16 +16,15 @@ const TestimonialSlide = () => {
 
    const breakpoints = {
       425: {
-         spaceBetween: 400
+         spaceBetween: 400,
       },
       640: {
-         spaceBetween: 30
+         spaceBetween: 30,
       },
       768: {
-         spaceBetween: 30
+         spaceBetween: 30,
       },
-
-   }
+   };
 
    return (
       <div className={testimonial.TestimonialSlide}>

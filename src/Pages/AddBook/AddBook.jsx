@@ -1,8 +1,20 @@
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const AddBook = () => {
    const { register, handleSubmit } = useForm();
-   const onSubmit = data => console.log(data);
+   const onSubmit = data => {
+      axios.post('http://localhost:5000/allBooks', data)
+         .then(res => {
+            console.log(res.data)
+            Swal.fire({
+               title: "Great",
+               text: "Book Added Successfully",
+               icon: "success"
+            });
+         })
+   };
 
    return (
       <div className='md:mt-20 xl:mt-40 container xl:mx-auto px-3 xl:px-20 shadow-xl bg-base-100 drop-shadow-2xl shadow-indigo-400'>

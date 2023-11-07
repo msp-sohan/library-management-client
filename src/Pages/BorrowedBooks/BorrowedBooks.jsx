@@ -1,7 +1,29 @@
 import { RxBox } from "react-icons/rx";
 import BorrowBookCard from "./BorrowBookCard";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
+import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
+import NoDataFound from "../../Component/NoDataFound/NoDataFound";
 
 const BorrowedBooks = () => {
+   const { user } = useAuth()
+   const email = user.email
+
+   const fetchBorrowedBook = async () => {
+      const response = await axios.get(`http://localhost:5000/borrowedBook?email=${email}`);
+      return response.data;
+   }
+
+   const { data: borrowedBook, isLoading } = useQuery({
+      queryKey: ['borrowedBook', email],
+      queryFn: fetchBorrowedBook,
+   })
+
+   if (isLoading) {
+      return <LoaderSpinner></LoaderSpinner>
+   }
+
    return (
       <div>
          <div>
@@ -18,8 +40,10 @@ const BorrowedBooks = () => {
                   </div>
                </div>
             </div>
-            <div>
-               <BorrowBookCard></BorrowBookCard>
+            <div className="max-w-[1000px] mx-auto mt-20 grid grid-cols-1 lg:grid-cols-2 gap-5">
+               {!borrowedBook?.length ? <NoDataFound></NoDataFound> :
+                  borrowedBook?.map(borrowBook => <BorrowBookCard key={borrowBook._id} borrowBook={borrowBook}></BorrowBookCard>)
+               }
             </div>
          </div>
       </div>

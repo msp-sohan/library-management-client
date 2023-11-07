@@ -11,6 +11,7 @@ import CategoryWiseBook from '../Pages/CategoryWiseBook/CategoryWiseBook';
 import SingleBook from '../Pages/SingleBook/SingleBook';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import UpdateBook from '../Pages/UpdateBook/UpdateBook';
+import PrivetRoute from './PrivetRoute';
 
 const router = createBrowserRouter([
 	{
@@ -25,15 +26,15 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "addBook",
-				element: <AddBook></AddBook>
+				element: <PrivetRoute><AddBook></AddBook></PrivetRoute>
 			},
 			{
 				path: "AllBooks",
-				element: <AllBooks></AllBooks>
+				element: <PrivetRoute><AllBooks></AllBooks></PrivetRoute>
 			},
 			{
 				path: "borrowedBooks",
-				element: <BorrowedBooks></BorrowedBooks>
+				element: <PrivetRoute><BorrowedBooks></BorrowedBooks></PrivetRoute>
 			},
 			{
 				path: 'categoriesBook/:categoryName',
@@ -41,11 +42,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "categoriesBook/:categoryName/:id",
-				element: <SingleBook></SingleBook>
+				element: <PrivetRoute><SingleBook></SingleBook></PrivetRoute>
 			},
 			{
 				path: "AllBooks/:id",
-				element: <UpdateBook></UpdateBook>
+				element: <PrivetRoute><UpdateBook></UpdateBook></PrivetRoute>
 			}
 		],
 	},

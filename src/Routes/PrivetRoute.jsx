@@ -1,22 +1,24 @@
-import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { RotatingLines } from 'react-loader-spinner';
-import { AuthContext } from '../../Provider/AuthProvider';
+// import { RotatingLines } from 'react-loader-spinner';
+
 import PropTypes from 'prop-types';
+import useAuth from '../hooks/useAuth';
+import LoaderSpinner from '../Component/LoaderSpinner/LoaderSpinner';
 
 const PrivetRoute = ({ children }) => {
-	const { user, loading } = useContext(AuthContext);
+	const { user, loading } = useAuth()
 	const location = useLocation();
 
 	if (loading) {
 		return (
 			<div className="flex justify-center items-center h-screen w-[100vw]">
-				<RotatingLines
+				<LoaderSpinner></LoaderSpinner>
+				{/* <RotatingLines
 					strokeColor="grey"
 					strokeWidth="5"
 					animationDuration="0.75"
 					width="96"
-					visible={true} />
+					visible={true} /> */}
 			</div>
 		);
 	}

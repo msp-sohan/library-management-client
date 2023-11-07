@@ -1,18 +1,20 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Swal from "sweetalert2";
+import PropTypes from 'prop-types';
+import Retings from "../../Component/Ratings/Retings";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
-const SingleBookCard = () => {
-   const [borrowrdDate, setBorrowedDate] = useState()
+const SingleBookCard = ({ singleBook }) => {
+   const { user } = useAuth()
+   const userEmail = user.email;
+   const userName = user.displayName;
+
+   const { _id, BookName, AuthorName, BookImage, Category, Quantity, Ratings, ShortDescription, LongDescription } = singleBook;
+
+   // const [borrowrdDate, setBorrowedDate] = useState()
 
    const handleBorrowBook = () => {
-
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed, so we add 1
-      const day = String(currentDate.getDate()).padStart(2, '0');
-      const formattedDate = `${year}-${month}-${day}`;
-      setBorrowedDate(formattedDate)
-
       Swal.fire({
          title: "Are you sure?",
          text: "Please Select a Return Date!",
@@ -23,19 +25,47 @@ const SingleBookCard = () => {
          cancelButtonColor: "#d33",
          confirmButtonText: "Borrowed"
       }).then((result) => {
-         const returnDate = result.value;
-         const borrowedBookInfo = { borrowrdDate, returnDate }
-         console.log(borrowedBookInfo)
+         if (result.value) {
 
-         if (result.isConfirmed) {
-            Swal.fire({
-               title: "Success!",
-               text: "The book is successfully borrowrd",
-               icon: "success"
-            });
+            const returnDate = result.value;
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed, so we add 1
+            const day = String(currentDate.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            // setBorrowedDate(formattedDate);
+
+            const borrowedBookInfo = {
+               _id,
+               BookName,
+               AuthorName,
+               BookImage,
+               Category,
+               ShortDescription,
+               borrowrdDate: formattedDate,
+               returnDate,
+               userName,
+               userEmail
+            };
+            if (result.isConfirmed) {
+               axios.post('http://localhost:5000/borrowBook', borrowedBookInfo)
+                  .then(response => {
+                     if (response.data.insertedId) {
+                        Swal.fire({
+                           title: "Great!",
+                           text: "You Borrowed Book Successfully!",
+                           icon: "success"
+                        });
+                     }
+                  })
+                  .catch(error => {
+                     console.log(error)
+                  })
+            }
          }
       });
-   }
+   };
+
    return (
       <div>
          <div>
@@ -44,27 +74,38 @@ const SingleBookCard = () => {
                   <div className="lg:w-4/5 mx-auto flex flex-wrap">
                      <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0 dark:bg-white p-2">
                         <h2 className="text-sm title-font text-gray-500 tracking-widest">Book Name</h2>
-                        <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">Animated Night Hill Illustrations</h1>
+                        <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">{BookName}</h1>
 
                         <div className="flex border-t border-gray-200 py-2">
                            <span className="text-gray-500">Author Name</span>
-                           <span className="ml-auto text-gray-900">Blue</span>
+                           <span className="ml-auto text-gray-900">{AuthorName}</span>
                         </div>
                         <div className="flex border-t border-gray-200 py-2">
                            <span className="text-gray-500">Category</span>
-                           <span className="ml-auto text-gray-900">Medium</span>
+                           <span className="ml-auto text-gray-900">{Category}</span>
                         </div>
                         <div className="flex border-t border-b mb-6 border-gray-200 py-2">
                            <span className="text-gray-500">Quantity</span>
-                           <span className="ml-auto text-gray-900">4</span>
+                           <span className="ml-auto text-gray-900">{Quantity}</span>
+                        </div>
+                        <div className="flex border-t border-b mb-6 border-gray-200 py-2">
+                           <span className="text-gray-500">Ratings</span>
+                           <span className="ml-auto text-gray-900">
+                              <Retings rating={Ratings}></Retings>
+                           </span>
                         </div>
                         <div className="flex mb-4">
                            <a className="flex-grow text-yellow-500 border-b-2 border-yellow-500 py-2 text-lg px-1">Description</a>
                         </div>
-                        <p className="leading-relaxed mb-4">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam inxigo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean.</p>
+                        <p className="leading-relaxed mb-4">{ShortDescription}</p>
+                        <p className="leading-relaxed mb-4">{LongDescription}</p>
                         <div className="flex">
                            <span className="title-font font-medium text-2xl text-gray-900"></span>
-                           <button onClick={handleBorrowBook} className="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Borrow</button>
+                           {Quantity > 0 ? (
+                              <button onClick={handleBorrowBook} className="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Borrow</button>
+                           ) : (
+                              <button disabled className="flex text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none rounded">Out of Stock</button>
+                           )}
                            <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Read</button>
                            {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                               <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
@@ -73,7 +114,9 @@ const SingleBookCard = () => {
                            </button> */}
                         </div>
                      </div>
-                     <img alt="book" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400" />
+                     <div className="h-auto lg:w-1/2 lg:mt-10 xl:mt-0 xl:p-10 mx-auto object-cover object-center rounded">
+                        <img alt="book" className="w-full rounded" src={BookImage} />
+                     </div>
                   </div>
                </div>
             </section>
@@ -82,4 +125,7 @@ const SingleBookCard = () => {
    );
 };
 
+SingleBookCard.propTypes = {
+   singleBook: PropTypes.object
+}
 export default SingleBookCard;

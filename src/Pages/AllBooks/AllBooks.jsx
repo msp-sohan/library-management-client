@@ -1,9 +1,26 @@
 import { RxBox } from "react-icons/rx";
 import { FaFilter } from "react-icons/fa";
 import AllBooksCard from "./AllBooksCard";
+import PropTypes from 'prop-types';
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
 
 const AllBooks = () => {
-   const id = 1
+
+
+   const fetchAllBook = async () => {
+      const response = await axios.get('http://localhost:5000/allBooks');
+      return response.data;
+   }
+   const { data: allBooks, isLoading } = useQuery({
+      queryKey: ['allBooks'],
+      queryFn: fetchAllBook,
+   })
+   if (isLoading) {
+      return <LoaderSpinner />
+   }
+
    return (
       <div>
          {/* Header */}
@@ -36,7 +53,7 @@ const AllBooks = () => {
                   </div>
                </div>
                {/* Right Side */}
-               <div className="lg:col-span-9 h-screen px-2 order-1 lg:order-2">
+               <div className="lg:col-span-9 h-full px-4 order-1 lg:order-2">
                   <div className=" h-36">
                      {/* Search Bar */}
                      <form>
@@ -60,8 +77,8 @@ const AllBooks = () => {
                         </select>
                      </div>
                   </div>
-                  <div>
-                     <AllBooksCard id={id}></AllBooksCard>
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                     {allBooks?.map(allBook => <AllBooksCard key={allBook._id} allBook={allBook}></AllBooksCard>)}
                   </div>
                </div>
             </div>
@@ -69,5 +86,7 @@ const AllBooks = () => {
       </div>
    );
 };
-
+AllBooks.propTypes = {
+   id: PropTypes.object
+}
 export default AllBooks;
