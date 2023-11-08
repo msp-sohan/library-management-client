@@ -4,7 +4,7 @@ import Retings from "../../Component/Ratings/Retings";
 
 const AllBooksCard = ({ allBook }) => {
    const { _id, BookImage, BookName, AuthorName, Category, Ratings, Quantity, ShortDescription } = allBook;
-   console.log(allBook)
+
    return (
       <div className="">
          {/* 1st */}
@@ -17,9 +17,11 @@ const AllBooksCard = ({ allBook }) => {
                <p className="text-base h-7 mb-1">{AuthorName}</p>
                <p className="text-base h-7 mb-2">{Category}</p>
                <p className="text-base h-7 mb-2">Quantity: {Quantity}</p>
-               <p className="h-7 mb-1"><Retings rating={Ratings}></Retings></p>
+               <div className="h-7 mb-1">
+                  <Retings rating={Ratings}></Retings>
+               </div>
                <p className="h-12 overflow-hidden">{ShortDescription}</p>
-               <Link to={`/AllBooks/${_id}`}>
+               <Link to={`/updateBook/${_id}`}>
                   <button className="px-5 bg-indigo-400 text-white hover:bg-transparent hover:text-black hover:border-indigo-500 py-1 border text-lg font-semibold rounded-md mt-3 duration-500">Upadate</button>
                </Link>
             </div>

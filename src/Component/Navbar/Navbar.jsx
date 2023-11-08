@@ -6,6 +6,7 @@ import { MdDarkMode, MdOutlineLogout } from 'react-icons/md';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Navbar = () => {
 	const { user, logOut } = useAuth();
@@ -35,9 +36,14 @@ const Navbar = () => {
 
 	const handleLogOut = () => {
 		logOut()
-			.then(() => {
-				toast.success('Logout Successfully ');
-				navigate('/login');
+			.then((res) => {
+				const loggedUser = res?.user?.email;
+				axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+					.then(res => {
+						console.log(res.data)
+						toast.success('Logout Successfully ');
+						navigate('/login');
+					})
 			})
 			.catch((error) => {
 				toast.error(error.message);
@@ -56,7 +62,7 @@ const Navbar = () => {
 				: 'hover:border-b-2 border-b-white  text-black dark:text-indigo-400 text-lg md:text-xl  mx-3 rounded-none'}>
 				Add Book
 			</NavLink>
-			<NavLink to="/AllBooks" className={({ isActive, isPending }) => isPending ? 'pending' : isActive
+			<NavLink to="/allBooks" className={({ isActive, isPending }) => isPending ? 'pending' : isActive
 				? 'active hover:border-b-2 border-b-white  text-white text-lg md:text-xl mx-3  rounded-none font-semibold border-b-2'
 				: 'hover:border-b-2 border-b-white  text-black dark:text-indigo-400 text-lg md:text-xl mx-3 rounded-none '}>
 				All Books

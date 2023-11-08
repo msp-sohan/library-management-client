@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import Retings from "../../Component/Ratings/Retings";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
-const SingleBookCard = ({ singleBook }) => {
+const SingleBookCard = ({ singleBook, refetch }) => {
    const { user } = useAuth()
    const userEmail = user.email;
    const userName = user.displayName;
@@ -23,7 +25,7 @@ const SingleBookCard = ({ singleBook }) => {
          showCancelButton: true,
          confirmButtonColor: "#3085d6",
          cancelButtonColor: "#d33",
-         confirmButtonText: "Borrowed"
+         confirmButtonText: "Submit"
       }).then((result) => {
          if (result.value) {
 
@@ -50,16 +52,25 @@ const SingleBookCard = ({ singleBook }) => {
             if (result.isConfirmed) {
                axios.post('http://localhost:5000/borrowBook', borrowedBookInfo)
                   .then(response => {
+                     console.log(response.data)
                      if (response.data.insertedId) {
+                        refetch()
                         Swal.fire({
                            title: "Great!",
                            text: "You Borrowed Book Successfully!",
                            icon: "success"
                         });
                      }
+                     if (response.data.message) {
+                        Swal.fire({
+                           title: "Sorry!",
+                           text: "You have already borrowed this book!",
+                           icon: "error"
+                        });
+                     }
                   })
                   .catch(error => {
-                     console.log(error)
+                     toast.error(error)
                   })
             }
          }
@@ -106,7 +117,9 @@ const SingleBookCard = ({ singleBook }) => {
                            ) : (
                               <button disabled className="flex text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none rounded">Out of Stock</button>
                            )}
-                           <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Read</button>
+                           <Link to={`/readBook/${_id}`} className="flex ml-auto">
+                              <button className=" text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Read</button>
+                           </Link>
                            {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                               <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
                                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
@@ -126,6 +139,7 @@ const SingleBookCard = ({ singleBook }) => {
 };
 
 SingleBookCard.propTypes = {
-   singleBook: PropTypes.object
+   singleBook: PropTypes.object,
+   refetch: PropTypes.func
 }
 export default SingleBookCard;

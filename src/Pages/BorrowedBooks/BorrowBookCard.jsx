@@ -1,7 +1,27 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
-const BorrowBookCard = ({ borrowBook }) => {
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
-   const { BookName, AuthorName, BookImage, Category, borrowrdDate, returnDate } = borrowBook;
+const BorrowBookCard = ({ borrowBook, refetch }) => {
+   const { _id, BookName, AuthorName, BookImage, Category, borrowrdDate, returnDate } = borrowBook;
+
+   const handleReturnBook = () => {
+      axios.delete(`http://localhost:5000/borrowedBook/${_id}`).then((response) => {
+         if (response.data.deletedCount > 0) {
+            refetch()
+            Swal.fire({
+               title: "Good job!",
+               text: "You Return Book Successfully",
+               icon: "success"
+            });
+         }
+      })
+         .catch((error) => {
+            toast.error(error);
+         });
+   };
+
    return (
       <div>
          {/* Books */}
@@ -18,7 +38,7 @@ const BorrowBookCard = ({ borrowBook }) => {
                   <p className="text-base h-7 mb-2">{Category}</p>
                   <p className="h-7 text-base mb-1 "> Borrow Date: {borrowrdDate}</p>
                   <p className="h-14 text-base overflow-hidden">Return Date: {returnDate}</p>
-                  <button className="px-5 bg-indigo-400 text-white hover:bg-transparent hover:text-black hover:border-indigo-500 py-1 border text-lg font-semibold rounded-md mt-4 duration-500">Return Book</button>
+                  <button onClick={handleReturnBook} className="px-5 bg-indigo-400 text-white hover:bg-transparent hover:text-black hover:border-indigo-500 py-1 border text-lg font-semibold rounded-md mt-4 duration-500">Return Book</button>
 
                </div>
             </div>
@@ -28,6 +48,8 @@ const BorrowBookCard = ({ borrowBook }) => {
    );
 };
 BorrowBookCard.propTypes = {
-   borrowBook: PropTypes.object
+   borrowBook: PropTypes.object,
+   refetch: PropTypes.func
+
 }
 export default BorrowBookCard;

@@ -12,6 +12,7 @@ import SingleBook from '../Pages/SingleBook/SingleBook';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import UpdateBook from '../Pages/UpdateBook/UpdateBook';
 import PrivetRoute from './PrivetRoute';
+import ReadBook from '../Pages/ReadBook/ReadBook';
 
 const router = createBrowserRouter([
 	{
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
 				element: <PrivetRoute><AddBook></AddBook></PrivetRoute>
 			},
 			{
-				path: "AllBooks",
+				path: "allBooks",
 				element: <PrivetRoute><AllBooks></AllBooks></PrivetRoute>
 			},
 			{
@@ -45,8 +46,12 @@ const router = createBrowserRouter([
 				element: <PrivetRoute><SingleBook></SingleBook></PrivetRoute>
 			},
 			{
-				path: "AllBooks/:id",
+				path: "updateBook/:id",
 				element: <PrivetRoute><UpdateBook></UpdateBook></PrivetRoute>
+			},
+			{
+				path: "readBook/:id",
+				element: <PrivetRoute><ReadBook></ReadBook></PrivetRoute>
 			}
 		],
 	},

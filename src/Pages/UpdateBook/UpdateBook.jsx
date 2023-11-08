@@ -1,37 +1,40 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import LoaderSpinner from '../../Component/LoaderSpinner/LoaderSpinner';
+import useBookById from '../../hooks/useBookById';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const UpdateBook = () => {
    const { id } = useParams()
+   const { data: updateBook, isLoading, refetch } = useBookById({ id })
 
    const { register, handleSubmit } = useForm();
-
-   const { data: updateBook, isLoading } = useQuery({
-      queryKey: ['updateBook', id],
-      queryFn: async () => {
-         const res = await axios.get(`http://localhost:5000/allBooks?id=${id}`)
-         return res.data
-      },
-   });
-
    const onSubmit = data => {
+      console.log(data)
       const ratings = parseInt(data.Ratings);
       if (ratings > 5) {
          toast.error('Rating Must be Equal or Less than 5.');
          return;
       }
-      console.log(data);
+      axios.put(`http://localhost:5000/allBooks/${id}`, data).then(res => {
+         if (res.data.modifiedCount > 0) {
+            refetch()
+            Swal.fire({
+               title: "Good job!",
+               text: "Upadate Book Successfully!",
+               icon: "success"
+            });
+         }
+      })
    };
 
    if (isLoading) {
       return <LoaderSpinner />;
    }
 
-   const { BookName, AuthorName, Category, Ratings } = updateBook || {}; // Initialize with an empty object if updateBook is not available
+   const { BookName, AuthorName, Category, Ratings, BookImage } = updateBook || {}; // Initialize with an empty object if updateBook is not available
 
    return (
       <div className='md:mt-20 xl:mt-40 container xl:mx-auto px-3 xl:px-20 shadow-xl bg-base-100 drop-shadow-2xl shadow-indigo-400'>
@@ -62,12 +65,12 @@ const UpdateBook = () => {
 
                <div className='lg:col-span-3 order-4'>
                   <label className='text-xl md:text-2xl'>Ratings</label>
-                  <input type="number" defaultValue={Ratings} placeholder="Ratings" {...register("Ratings", {})} className='w-full rounded-md p-2 bg-gray-200 outline-gray-400' />
+                  <input type="number" defaultValue={Ratings} placeholder="Ratings" {...register("Ratings", {})} className='w-full rounded-md p-2 bg-gray-200 outline-gray-400' required />
                </div>
 
                <div className='lg:col-span-6 md:col-span-2 order-5'>
                   <label className='text-xl md:text-2xl'>Book Image</label>
-                  <input type="text" placeholder="Book Image" {...register("BookImage", {})} className='w-full rounded-md p-2 bg-gray-200 outline-gray-400' />
+                  <input type="text" defaultValue={BookImage} placeholder="Book Image" {...register("BookImage", { required: true })} className='w-full rounded-md p-2 bg-gray-200 outline-gray-400' />
                </div>
                <div className='md:col-span-2 lg:col-span-6 xl:col-span-6 order-6'>
                   <input type="submit" className='w-full rounded-md p-3 btn btn-primary text-xl mb-12' />

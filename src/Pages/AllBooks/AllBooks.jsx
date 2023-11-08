@@ -2,24 +2,49 @@ import { RxBox } from "react-icons/rx";
 import { FaFilter } from "react-icons/fa";
 import AllBooksCard from "./AllBooksCard";
 import PropTypes from 'prop-types';
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
+import useAllBooks from "../../hooks/useAllBooks";
+import useCategory from "../../hooks/useCategory";
+import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const AllBooks = () => {
+   const { user } = useAuth()
+   const { isLoading, refetch } = useAllBooks();
 
+   const [allBooks, setAllBooks] = useState()
+   useEffect(() => {
+      const fetchData = async () => {
+         const response = await axios.get(`http://localhost:5000/allBooks?email=${user?.email}`, { withCredentials: true });
+         setAllBooks(response.data);
+      }
+      fetchData();
+   }, [user.email]);
 
-   const fetchAllBook = async () => {
-      const response = await axios.get('http://localhost:5000/allBooks');
-      return response.data;
-   }
-   const { data: allBooks, isLoading } = useQuery({
-      queryKey: ['allBooks'],
-      queryFn: fetchAllBook,
-   })
+   const { data: categories } = useCategory();
+   const [filteredBooks, setFilteredBooks] = useState([]);
+
    if (isLoading) {
       return <LoaderSpinner />
    }
+
+
+   const handleFilter = () => {
+      const filteredBooks = allBooks.filter((book) => book.Quantity > 0);
+      setFilteredBooks(filteredBooks);
+   };
+
+   const handleZero = () => {
+      const filteredBooks = allBooks.filter((book) => book.Quantity === 0);
+      setFilteredBooks(filteredBooks);
+   };
+
+   const handleCategory = (e) => {
+      const filteredBooks = allBooks.filter((book) => book.Category === e);
+      setFilteredBooks(filteredBooks);
+   }
+
 
    return (
       <div>
@@ -45,11 +70,23 @@ const AllBooks = () => {
                   <h3 className="text-3xl flex items-center gap-5"><FaFilter></FaFilter><span>Filter By</span></h3>
                   <h4 className="pt-10 text-2xl">Category</h4>
                   <div className="pt-12">
-                     <button className="flex items-center gap-5">
+                     {
+                        categories?.map(category => <button onClick={() => handleCategory(category.categoryName)} key={category._id} className="flex items-center gap-5">
+                           <RxBox className="icon-rotate-on-hover" />
+                           <span className="hover:rotate-0 text-xl">{category.categoryName}</span>
+                        </button>)
+                     }
+                  </div>
+                  <div>
+                     <h4 className="pt-10 text-2xl">Availability</h4>
+                     <button onClick={handleFilter} className="flex items-center gap-5 pt-4">
                         <RxBox className="icon-rotate-on-hover" />
-                        <span className="hover:rotate-0 text-xl">Category</span>
+                        <span className="hover:rotate-0 text-xl">In Library</span>
                      </button>
-
+                     <button onClick={handleZero} className="flex items-center gap-5 pt-4">
+                        <RxBox className="icon-rotate-on-hover" />
+                        <span className="hover:rotate-0 text-xl">Out of Library</span>
+                     </button>
                   </div>
                </div>
                {/* Right Side */}
@@ -69,16 +106,24 @@ const AllBooks = () => {
                         </div>
                      </form>
                      {/* sort */}
-                     <div className="flex items-center justify-end mt-8 dark:text-white">
-                        <h3 className="text-xl mr-4">Sort By:</h3>
-                        <select className="w-72 rounded-md p-2 text-base bg-gray-700 text-white">
-                           <option value="" className="w-96 text-lg">Default</option>
-                           <option value="" className="w-96 text-lg">Available Book</option>
-                        </select>
+                     <div className="flex items-center justify-between mt-8 dark:text-white">
+                        <div className="flex items-center">
+                           <h3 className="text-xl mr-4">Sort By:</h3>
+                           <select className="w-72 rounded-md p-2 text-base bg-gray-700 text-white">
+                              <option className="w-96 text-lg">Default</option>
+                              <option value="0" className="w-96 text-lg">Available Book</option>
+                           </select>
+                        </div>
+                        {filteredBooks.length > 0 ? <p className="text-base">Found Book <span> {filteredBooks ? filteredBooks.length : allBooks.length} </span> of <span>{allBooks.length}</span></p> : ""}
                      </div>
                   </div>
                   <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                     {allBooks?.map(allBook => <AllBooksCard key={allBook._id} allBook={allBook}></AllBooksCard>)}
+                     {isLoading ? (
+                        <LoaderSpinner />
+                     ) : ((filteredBooks.length > 0 ? filteredBooks : allBooks)?.map((allBook) => (
+                        <AllBooksCard key={allBook._id} allBook={allBook} refetch={refetch}></AllBooksCard>
+                     ))
+                     )}
                   </div>
                </div>
             </div>

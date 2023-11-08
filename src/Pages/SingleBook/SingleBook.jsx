@@ -1,13 +1,10 @@
 import { RxBox } from "react-icons/rx";
 import SingleBookCard from "./SingleBookCard";
 import { useParams } from "react-router-dom";
-// import { useEffect, useState } from "react";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
+import useBookById from "../../hooks/useBookById";
 
 const SingleBook = () => {
-   const { id } = useParams()
    // const [singleBook, setSingleBook] = useState()
    // useEffect(() => {
    //    axios.get(`http://localhost:5000/allBooks?id=${id}`)
@@ -15,22 +12,21 @@ const SingleBook = () => {
    // }, [id])
    // const queryClient = useQueryClient()
 
-   const fetchBook = async () => {
-      const response = await axios.get(`http://localhost:5000/allBooks?id=${id}`);
-      return response.data;
-   };
+   const { id } = useParams()
+   const { data: singleBook, isLoading, refetch } = useBookById({ id })
 
-   const { data: singleBook, isError, isLoading } = useQuery({
-      queryKey: ['book', id],
-      queryFn: fetchBook,
-   });
+   // const fetchBook = async () => {
+   //    const response = await axios.get(`http://localhost:5000/allBooks?id=${id}`);
+   //    return response.data;
+   // };
+   // const { data: singleBook, isError } = useQuery({
+   //    queryKey: ['book', id],
+   //    queryFn: fetchBook,
+   // });
+   // console.log('data from component', singleBook)
 
    if (isLoading) {
       return <LoaderSpinner />;
-   }
-
-   if (isError) {
-      console.error(isError);
    }
 
    return (
@@ -49,7 +45,7 @@ const SingleBook = () => {
             </div>
          </div>
          {/* book Card */}
-         <SingleBookCard singleBook={singleBook}></SingleBookCard>
+         <SingleBookCard singleBook={singleBook} refetch={refetch}></SingleBookCard>
       </div>
    );
 };
