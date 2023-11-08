@@ -16,7 +16,7 @@ const AllBooks = () => {
    const [allBooks, setAllBooks] = useState()
    useEffect(() => {
       const fetchData = async () => {
-         const response = await axios.get(`http://localhost:5000/allBooks?email=${user?.email}`, { withCredentials: true });
+         const response = await axios.get(`https://b8a11-server-side-msp-sohan.vercel.app/allBooks?email=${user?.email}`, { withCredentials: true });
          setAllBooks(response.data);
       }
       fetchData();

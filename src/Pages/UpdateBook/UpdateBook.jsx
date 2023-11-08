@@ -12,13 +12,12 @@ const UpdateBook = () => {
 
    const { register, handleSubmit } = useForm();
    const onSubmit = data => {
-      console.log(data)
       const ratings = parseInt(data.Ratings);
       if (ratings > 5) {
          toast.error('Rating Must be Equal or Less than 5.');
          return;
       }
-      axios.put(`http://localhost:5000/allBooks/${id}`, data).then(res => {
+      axios.put(`https://b8a11-server-side-msp-sohan.vercel.app/allBooks/${id}`, data).then(res => {
          if (res.data.modifiedCount > 0) {
             refetch()
             Swal.fire({

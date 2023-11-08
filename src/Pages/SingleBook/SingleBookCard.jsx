@@ -50,9 +50,8 @@ const SingleBookCard = ({ singleBook, refetch }) => {
                userEmail
             };
             if (result.isConfirmed) {
-               axios.post('http://localhost:5000/borrowBook', borrowedBookInfo)
+               axios.post('https://b8a11-server-side-msp-sohan.vercel.app/borrowBook', borrowedBookInfo)
                   .then(response => {
-                     console.log(response.data)
                      if (response.data.insertedId) {
                         refetch()
                         Swal.fire({

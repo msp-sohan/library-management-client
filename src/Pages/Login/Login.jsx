@@ -12,11 +12,9 @@ const Login = () => {
 	const onSubmit = (data) => {
 		const { email, password } = data;
 		signInUser(email, password)
-			.then(result => {
-				const loggedInUser = result.user;
+			.then(() => {
 				const user = { email };
-				console.log('login route', loggedInUser, user)
-				axios.post('http://localhost:5000/login', user, { withCredentials: true })
+				axios.post('https://b8a11-server-side-msp-sohan.vercel.app/login', user, { withCredentials: true })
 					.then(res => {
 						if (res.data.success) {
 							toast.success('Successfully Login');

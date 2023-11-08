@@ -38,7 +38,7 @@ const Navbar = () => {
 		logOut()
 			.then((res) => {
 				const loggedUser = res?.user?.email;
-				axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+				axios.post('https://b8a11-server-side-msp-sohan.vercel.app/logout', loggedUser, { withCredentials: true })
 					.then(res => {
 						console.log(res.data)
 						toast.success('Logout Successfully ');

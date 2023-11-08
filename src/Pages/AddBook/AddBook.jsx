@@ -5,9 +5,8 @@ import Swal from 'sweetalert2';
 const AddBook = () => {
    const { register, handleSubmit } = useForm();
    const onSubmit = data => {
-      axios.post('http://localhost:5000/allBooks', data)
-         .then(res => {
-            console.log(res.data)
+      axios.post('https://b8a11-server-side-msp-sohan.vercel.app/allBooks', data)
+         .then(() => {
             Swal.fire({
                title: "Great",
                text: "Book Added Successfully",

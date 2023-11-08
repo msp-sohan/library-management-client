@@ -5,17 +5,7 @@ import NoDataFound from "../../Component/NoDataFound/NoDataFound";
 import useBorrowBook from "../../hooks/useBorrowBook";
 
 const BorrowedBooks = () => {
-
    const { data: borrowedBook, isLoading, refetch } = useBorrowBook()
-
-   // const fetchBorrowedBook = async () => {
-   //    const response = await axios.get(`http://localhost:5000/borrowedBook?email=${email}`);
-   //    return response.data;
-   // }
-   // const { data: borrowedBook } = useQuery({
-   //    queryKey: ['borrowedBook', email],
-   //    queryFn: fetchBorrowedBook,
-   // })
 
    if (isLoading) {
       return <LoaderSpinner></LoaderSpinner>

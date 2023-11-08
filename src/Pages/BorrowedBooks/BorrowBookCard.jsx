@@ -7,7 +7,7 @@ const BorrowBookCard = ({ borrowBook, refetch }) => {
    const { _id, BookName, AuthorName, BookImage, Category, borrowrdDate, returnDate } = borrowBook;
 
    const handleReturnBook = () => {
-      axios.delete(`http://localhost:5000/borrowedBook/${_id}`).then((response) => {
+      axios.delete(`https://b8a11-server-side-msp-sohan.vercel.app/borrowedBook/${_id}`).then((response) => {
          if (response.data.deletedCount > 0) {
             refetch()
             Swal.fire({

@@ -9,7 +9,7 @@ const CategoryWiseBook = () => {
    const [categoryBook, setCategoryBook] = useState()
 
    useEffect(() => {
-      axios.get(`http://localhost:5000/allBooks?categoryName=${categoryName}`)
+      axios.get(`https://b8a11-server-side-msp-sohan.vercel.app/allBooks?categoryName=${categoryName}`)
          .then(res => setCategoryBook(res.data))
    }, [categoryName])
 

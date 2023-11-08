@@ -5,25 +5,8 @@ import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
 import useBookById from "../../hooks/useBookById";
 
 const SingleBook = () => {
-   // const [singleBook, setSingleBook] = useState()
-   // useEffect(() => {
-   //    axios.get(`http://localhost:5000/allBooks?id=${id}`)
-   //       .then(res => setSingleBook(res.data))
-   // }, [id])
-   // const queryClient = useQueryClient()
-
    const { id } = useParams()
    const { data: singleBook, isLoading, refetch } = useBookById({ id })
-
-   // const fetchBook = async () => {
-   //    const response = await axios.get(`http://localhost:5000/allBooks?id=${id}`);
-   //    return response.data;
-   // };
-   // const { data: singleBook, isError } = useQuery({
-   //    queryKey: ['book', id],
-   //    queryFn: fetchBook,
-   // });
-   // console.log('data from component', singleBook)
 
    if (isLoading) {
       return <LoaderSpinner />;

@@ -1,9 +1,13 @@
-import { useLoaderData } from "react-router-dom";
 import { FaBook } from 'react-icons/fa6';
 import Category from "./Category";
+import useCategory from "../../hooks/useCategory";
+import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 
 const Categories = () => {
-   const categories = useLoaderData()
+   const { data: categories, isLoading } = useCategory()
+   if (isLoading) {
+      return <LoaderSpinner></LoaderSpinner>
+   }
 
    return (
       <div className="text-center container mx-auto my-12 px-3">

@@ -7,8 +7,7 @@ const SocialLogin = () => {
 	const navigate = useNavigate();
 	const handleGoogleLogin = () => {
 		googleLogin()
-			.then((result) => {
-				console.log(result.user);
+			.then(() => {
 				toast.success('Successfully Sign in With Google');
 				navigate('/');
 			})

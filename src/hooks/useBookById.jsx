@@ -6,7 +6,7 @@ const useBookById = ({ id }) => {
    const { data, isLoading, refetch } = useQuery({
       queryKey: ['allBook', id],
       queryFn: async () => {
-         const response = await axios.get(`http://localhost:5000/allBooks?id=${id}`);
+         const response = await axios.get(`https://b8a11-server-side-msp-sohan.vercel.app/allBooks?id=${id}`);
          return response.data;
       }
    });
