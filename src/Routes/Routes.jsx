@@ -3,7 +3,6 @@ import MainLayout from '../layouts/MainLayout';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
-import ProtectedRoute from './ProtectedRoute';
 import AddBook from '../Pages/AddBook/AddBook';
 import AllBooks from '../Pages/AllBooks/AllBooks';
 import BorrowedBooks from '../Pages/BorrowedBooks/BorrowedBooks';
@@ -56,11 +55,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/login',
-		element: <ProtectedRoute><Login></Login></ProtectedRoute>,
+		element: <Login></Login>,
 	},
 	{
 		path: '/register',
-		element: <ProtectedRoute><Register></Register></ProtectedRoute>,
+		element: <Register></Register>,
 	},
 ]);
 

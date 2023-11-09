@@ -8,12 +8,12 @@ const AllBooksCard = ({ allBook }) => {
    return (
       <div className="">
          {/* 1st */}
-         <div className="border border-black dark:bg-white hover:border-yellow-600 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-200 duration-700 flex gap-4 max-w-[600px] h-[320px] p-2 mx-2 md:mx-auto">
+         <div className="border border-black rounded dark:bg-white hover:border-yellow-600 hover:scale-100 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-200 duration-700 flex gap-4 max-w-[600px] h-[320px] p-1 md:mx-auto">
             <div className="f;ex-1">
-               <img src={BookImage} alt="" className="h-full" />
+               <img src={BookImage} alt="" className="h-full w-[200px] md:w-[230px]" />
             </div>
             <div className="flex-1">
-               <h2 className="text-xl h-12 md:font-semibold mb-3">{BookName}</h2>
+               <h2 className="text-xl h-14 md:font-semibold mb-3">{BookName}</h2>
                <p className="text-base h-7 mb-1">{AuthorName}</p>
                <p className="text-base h-7 mb-2">{Category}</p>
                <p className="text-base h-7 mb-2">Quantity: {Quantity}</p>

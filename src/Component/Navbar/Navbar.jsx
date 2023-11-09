@@ -1,12 +1,10 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import userPic from '../../assets/user.png';
-import logo from '../../assets/logo.png';
 import { FaUserTie } from 'react-icons/fa';
 import { MdDarkMode, MdOutlineLogout } from 'react-icons/md';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 const Navbar = () => {
 	const { user, logOut } = useAuth();
@@ -36,14 +34,9 @@ const Navbar = () => {
 
 	const handleLogOut = () => {
 		logOut()
-			.then((res) => {
-				const loggedUser = res?.user?.email;
-				axios.post('https://b8a11-server-side-msp-sohan.vercel.app/logout', loggedUser, { withCredentials: true })
-					.then(res => {
-						console.log(res.data)
-						toast.success('Logout Successfully ');
-						navigate('/login');
-					})
+			.then(() => {
+				toast.success('Logout Successfully ');
+				navigate('/login');
 			})
 			.catch((error) => {
 				toast.error(error.message);
@@ -93,7 +86,7 @@ const Navbar = () => {
 
 				{/* Navbar Center */}
 				<div className="md:pl-24 lg:pl-0">
-					<Link to="/"><img src={logo} alt="" className='w-36 lg:w-44 ml-2' /></Link>
+					<Link to="/"><img src="https://i.ibb.co/drcF6w7/library.png" alt="" className='w-36 h-16 lg:w-44 ml-2 bg-white rounded-md' /></Link>
 				</div>
 
 				{/* Navbar End */}

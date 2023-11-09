@@ -3,7 +3,6 @@ import SocialLogin from './SocialLogin';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 
 const Login = () => {
 	const { signInUser } = useAuth();
@@ -13,14 +12,8 @@ const Login = () => {
 		const { email, password } = data;
 		signInUser(email, password)
 			.then(() => {
-				const user = { email };
-				axios.post('https://b8a11-server-side-msp-sohan.vercel.app/login', user, { withCredentials: true })
-					.then(res => {
-						if (res.data.success) {
-							toast.success('Successfully Login');
-							navigate(location?.state ? location?.state : '/')
-						}
-					})
+				toast.success('Successfully Login');
+				navigate(location?.state ? location?.state : '/')
 			})
 			.catch((error) => {
 				toast.error(error.message);

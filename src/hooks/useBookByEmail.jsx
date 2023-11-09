@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
 import useAxios from "./useAxios";
 
-const useCategory = () => {
+const useBookByEmail = ({ email }) => {
    const axios = useAxios()
    const { data, isLoading, refetch } = useQuery({
-      queryKey: ['category'],
+      queryKey: ['allBook', email],
       queryFn: async () => {
-         const response = await axios.get('/categories');
+         const response = await axios.get(`/allBooks?email=${email}`);
          return response.data;
       }
-   })
-   return { data, isLoading, refetch }
-}
-export default useCategory;
+   });
+   return { data, isLoading, refetch };
+};
+
+export default useBookByEmail;

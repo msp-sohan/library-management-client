@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import useAxios from "./useAxios";
 
-const useAllBooks = () => {
+const useAllBooks = (categoryName, availability, email) => {
+   const axios = useAxios()
    const { data, isLoading, refetch } = useQuery({
-      queryKey: ['allBooks'],
+      queryKey: ['allBooks', categoryName, availability],
       queryFn: async () => {
-         const response = await axios.get('https://b8a11-server-side-msp-sohan.vercel.app/allBooks', { withCredentials: true });
+         const response = await axios.get(`/allBooks?categoryName=${categoryName}&availability=${availability}&email=${email}`);
          return response.data;
       }
    })

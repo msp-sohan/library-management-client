@@ -1,15 +1,15 @@
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import useAxios from '../../hooks/useAxios';
 
 const AddBook = () => {
-   const { register, handleSubmit } = useForm();
+   const axios = useAxios()
    const { user } = useAuth();
-
+   const { register, handleSubmit, reset } = useForm();
    const onSubmit = data => {
       data.userEmail = user.email;
-      axios.post('https://b8a11-server-side-msp-sohan.vercel.app/allBooks', data)
+      axios.post('/allBooks', data)
          .then((res) => {
             console.log(res.data)
             Swal.fire({
@@ -17,6 +17,7 @@ const AddBook = () => {
                text: "Book Added Successfully",
                icon: "success"
             });
+            reset()
          })
    };
 

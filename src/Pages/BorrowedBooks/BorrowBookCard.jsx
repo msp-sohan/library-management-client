@@ -1,13 +1,14 @@
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import useAxios from '../../hooks/useAxios';
 
 const BorrowBookCard = ({ borrowBook, refetch }) => {
    const { _id, BookName, AuthorName, BookImage, Category, borrowrdDate, returnDate } = borrowBook;
+   const axios = useAxios()
 
    const handleReturnBook = () => {
-      axios.delete(`https://b8a11-server-side-msp-sohan.vercel.app/borrowedBook/${_id}`).then((response) => {
+      axios.delete(`/borrowedBook/${_id}`).then((response) => {
          if (response.data.deletedCount > 0) {
             refetch()
             Swal.fire({

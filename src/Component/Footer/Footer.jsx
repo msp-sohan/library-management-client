@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from '../../assets/logo.png'
 
 const Footer = () => {
    return (
@@ -9,7 +8,7 @@ const Footer = () => {
                <div className="container mx-auto flex flex-wrap text-left lg:text-left bg-indigo-500 dark:bg-gray-700 rounded-md py-5 text-white">
                   <div className="w-full lg:w-6/12 px-4">
                      {/* <h4 className="text-3xl fonat-semibold text-blueGray-700">Lets keep in touch!</h4> */}
-                     <Link to="/"><img src={logo} alt="" /></Link>
+                     <Link to="/"><img src="https://i.ibb.co/drcF6w7/library.png" alt="" className="w-36 h-16 lg:w-44 ml-2 bg-white rounded-md" /></Link>
                      <h5 className="text-lg mt-4 mb-6 text-gray-950 dark:text-indigo-400">
                         Find us on any of these platforms, we respond 1-2 business days.
                      </h5>

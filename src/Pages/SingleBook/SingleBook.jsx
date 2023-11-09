@@ -1,16 +1,13 @@
 import { RxBox } from "react-icons/rx";
 import SingleBookCard from "./SingleBookCard";
 import { useParams } from "react-router-dom";
-import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
 import useBookById from "../../hooks/useBookById";
+// import useAllBooks from "../../hooks/useAllBooks";
 
 const SingleBook = () => {
    const { id } = useParams()
-   const { data: singleBook, isLoading, refetch } = useBookById({ id })
-
-   if (isLoading) {
-      return <LoaderSpinner />;
-   }
+   const { data, isLoading, refetch } = useBookById({ id })
+   const Books = data?.result
 
    return (
       <div>
@@ -28,7 +25,14 @@ const SingleBook = () => {
             </div>
          </div>
          {/* book Card */}
-         <SingleBookCard singleBook={singleBook} refetch={refetch}></SingleBookCard>
+         <div>
+            {Books?.map(singleBook => <SingleBookCard
+               key={singleBook._id}
+               singleBook={singleBook}
+               refetch={refetch}
+               isLoading={isLoading}
+            ></SingleBookCard>)}
+         </div>
       </div>
    );
 };

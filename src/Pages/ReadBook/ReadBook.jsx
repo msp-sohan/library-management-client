@@ -1,46 +1,44 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useBookById from '../../hooks/useBookById';
+import LoaderSpinner from '../../Component/LoaderSpinner/LoaderSpinner';
 
 const ReadBook = () => {
    const { id } = useParams();
    const [numPages, setNumPages] = useState(0);
-   // eslint-disable-next-line no-unused-vars
-   const [pageNumber, setPageNumber] = useState(1);
    const [pdfContent, setPdfContent] = useState([]);
-   const { data, refetch } = useBookById({ id });
+   const { data, isLoading, refetch } = useBookById({ id });
 
-   const text = data?.LongDescription;
+   const text = data?.result?.[0]?.LongDescription;
 
-   const calculatePages = (text) => {
+   useEffect(() => {
+      if (!text) return;
+
       const pageSize = 1000;
       const totalPages = Math.ceil(text.length / pageSize);
       const pages = Array.from({ length: totalPages }, (v, i) =>
          text.slice(i * pageSize, (i + 1) * pageSize)
       );
-      return { pages, totalPages };
-   };
-
-   useEffect(() => {
-      if (text) {
-         const { pages, totalPages } = calculatePages(text);
-         setPdfContent(pages);
-         setNumPages(totalPages);
-      }
+      setPdfContent(pages);
+      setNumPages(totalPages);
    }, [text]);
 
    useEffect(() => {
       if (window.performance) {
-         refetch()
+         refetch();
       }
-   }, [refetch])
+   }, [refetch]);
+
+   if (isLoading) {
+      return <LoaderSpinner></LoaderSpinner>;
+   }
 
    return (
       <div className="max-w-[1000px] mx-auto mt-32 p-2">
          <h1 className="text-2xl font-bold mb-4 text-center">Read Book</h1>
          <div className='grid gap-6 grid-cols-1 md:grid-cols-7 lg:grid-cols-12'>
             <div className='md:col-span-3 lg:col-span-4'>
-               <img src={data?.BookImage} alt="w-96" />
+               <img src={data?.result?.[0]?.BookImage} alt="w-96" />
             </div>
             <div className='md:col-span-4 lg:col-span-8'>
                {pdfContent.map((pageText, index) => (
@@ -50,7 +48,7 @@ const ReadBook = () => {
                ))}
             </div>
          </div>
-         <p className="mt-4 text-center">Page {pageNumber} of {numPages}</p>
+         <p className="mt-4 text-center">Page {1} of {numPages}</p>
       </div>
    );
 };

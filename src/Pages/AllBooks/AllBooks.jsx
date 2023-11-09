@@ -5,60 +5,59 @@ import PropTypes from 'prop-types';
 import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
 import useAllBooks from "../../hooks/useAllBooks";
 import useCategory from "../../hooks/useCategory";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+
 
 const AllBooks = () => {
    const { user } = useAuth()
-   const { isLoading, refetch } = useAllBooks();
-
-   const [allBooks, setAllBooks] = useState()
-   useEffect(() => {
-      const fetchData = async () => {
-         const response = await axios.get(`https://b8a11-server-side-msp-sohan.vercel.app/allBooks?email=${user?.email}`, { withCredentials: true });
-         setAllBooks(response.data);
-      }
-      fetchData();
-   }, [user.email]);
-
+   const email = user.email
    const { data: categories } = useCategory();
-   const [filteredBooks, setFilteredBooks] = useState([]);
+
+   const [categoryName, setCategoryName] = useState([]);
+   const [availability, setAvailability] = useState('all')
+
+   const { data, isLoading, refetch } = useAllBooks(categoryName, availability, email);
+   const allBooks = data?.result
+   const total = data?.total
+
 
    if (isLoading) {
       return <LoaderSpinner />
    }
 
-
    const handleFilter = () => {
-      const filteredBooks = allBooks.filter((book) => book.Quantity > 0);
-      setFilteredBooks(filteredBooks);
+      setAvailability("inLibrary")
+      setCategoryName([])
    };
-
    const handleZero = () => {
-      const filteredBooks = allBooks.filter((book) => book.Quantity === 0);
-      setFilteredBooks(filteredBooks);
+      setAvailability("outOfLibrary")
+      setCategoryName([])
    };
 
    const handleCategory = (e) => {
-      const filteredBooks = allBooks.filter((book) => book.Category === e);
-      setFilteredBooks(filteredBooks);
+      setCategoryName(e);
+      setAvailability('all')
    }
 
+   const handleSort = (e) => {
+      setAvailability(e.target.value)
+      setCategoryName([])
+   }
 
    return (
       <div>
          {/* Header */}
          <div className="bg-black bg-opacity-90 relative">
-            <img src="https://quomodosoft.com/html/library/images/slide/slide1.jpg" alt="" className="w-full -mt-[55vh] object-cover opacity-40" />
-            <div className="absolute top-[76%] left-[35%]">
-               <h2 className="text-white text-2xl md:text-4xl ">Choose Your Book and Enjoy</h2>
+            <img src="https://quomodosoft.com/html/library/images/slide/slide1.jpg" alt="" className="w-full md:h-[50vh] object-cover opacity-40" />
+            <div className="absolute w-full top-[40%] lg:top-[50%]">
+               <h2 className="text-white text-2xl text-center md:text-4xl ">Choose Your Book and Enjoy</h2>
                <div className='flex items-center justify-center pt-5'>
-                  <hr className='bg-black w-48' />
+                  <hr className='bg-black w-20 xl:w-40' />
                   <RxBox className='rotate-45 text-xl text-white'></RxBox>
                   <hr className='bg-black w-4' />
                   <RxBox className='rotate-45 text-xl text-white'></RxBox>
-                  <hr className='bg-black w-48' />
+                  <hr className='bg-black w-20 xl:w-40' />
                </div>
             </div>
          </div>
@@ -90,7 +89,7 @@ const AllBooks = () => {
                   </div>
                </div>
                {/* Right Side */}
-               <div className="lg:col-span-9 h-full px-4 order-1 lg:order-2">
+               <div className="lg:col-span-9 h-full px-2 md:px-4 order-1 lg:order-2">
                   <div className=" h-36">
                      {/* Search Bar */}
                      <form>
@@ -106,25 +105,38 @@ const AllBooks = () => {
                         </div>
                      </form>
                      {/* sort */}
-                     <div className="flex items-center justify-between mt-8 dark:text-white">
+                     <div className="md:flex items-center justify-between mt-8 dark:text-white">
                         <div className="flex items-center">
                            <h3 className="text-xl mr-4">Sort By:</h3>
-                           <select className="w-72 rounded-md p-2 text-base bg-gray-700 text-white">
-                              <option className="w-96 text-lg">Default</option>
-                              <option value="0" className="w-96 text-lg">Available Book</option>
+                           <select onChange={(e) => handleSort(e)} className="w-72 rounded-md p-2 text-base bg-gray-700 text-white">
+                              <option value="all" className="w-96 text-lg">Default</option>
+                              <option value="inLibrary" className="w-96 text-lg">Available Book</option>
                            </select>
                         </div>
-                        {filteredBooks.length > 0 ? <p className="text-base">Found Book <span> {filteredBooks ? filteredBooks.length : allBooks.length} </span> of <span>{allBooks.length}</span></p> : ""}
+                        {allBooks?.length <= 0 || allBooks.length === total ? "" : <p className="text-base my-4">Found Total <span> {allBooks?.length} </span><span> of {total}</span></p>}
                      </div>
                   </div>
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 mt-7 gap-4">
                      {isLoading ? (
                         <LoaderSpinner />
-                     ) : ((filteredBooks.length > 0 ? filteredBooks : allBooks)?.map((allBook) => (
+                     ) : (allBooks?.map((allBook) => (
                         <AllBooksCard key={allBook._id} allBook={allBook} refetch={refetch}></AllBooksCard>
                      ))
                      )}
                   </div>
+                  {/* <div className="mt-3 flex justify-end">
+                     <div className="border-2 rounded-md p-1 flex gap-2">
+                        <button className="p-3  btn-outline font-semibold btn-primary lg:text-2xl btn-ghost rounded-lg" onClick={handlePrevPage}>Prev</button>
+                        {
+                           pages.map(page => <button
+                              className={currentPage === page ? 'lg:text-2xl bg-[#4a07da] text-white font-semibold px-3 rounded-lg' : 'px-3 btn-outline btn-primary text-2xl btn-ghost rounded-lg'}
+                              onClick={() => setCurrentPage(page)}
+                              key={page}
+                           >{page + 1}</button>)
+                        }
+                        <button className="p-2 btn-outline font-semibold btn-primary lg:text-2xl btn-ghost rounded-lg" onClick={handleNextPage}>Next</button>
+                     </div>
+                  </div> */}
                </div>
             </div>
          </div>

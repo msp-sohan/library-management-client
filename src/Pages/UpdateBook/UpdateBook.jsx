@@ -3,12 +3,15 @@ import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import LoaderSpinner from '../../Component/LoaderSpinner/LoaderSpinner';
 import useBookById from '../../hooks/useBookById';
-import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAxios from '../../hooks/useAxios';
+
 
 const UpdateBook = () => {
    const { id } = useParams()
-   const { data: updateBook, isLoading, refetch } = useBookById({ id })
+   const axios = useAxios()
+   const { data, isLoading, refetch } = useBookById({ id })
+   const updateBook = data?.result
 
    const { register, handleSubmit } = useForm();
    const onSubmit = data => {
@@ -17,7 +20,7 @@ const UpdateBook = () => {
          toast.error('Rating Must be Equal or Less than 5.');
          return;
       }
-      axios.put(`https://b8a11-server-side-msp-sohan.vercel.app/allBooks/${id}`, data).then(res => {
+      axios.put(`/allBooks/${id}`, data).then(res => {
          if (res.data.modifiedCount > 0) {
             refetch()
             Swal.fire({
@@ -33,7 +36,7 @@ const UpdateBook = () => {
       return <LoaderSpinner />;
    }
 
-   const { BookName, AuthorName, Category, Ratings, BookImage } = updateBook || {}; // Initialize with an empty object if updateBook is not available
+   const { BookName, AuthorName, Category, Ratings, BookImage } = updateBook[0] || {};
 
    return (
       <div className='md:mt-20 xl:mt-40 container xl:mx-auto px-3 xl:px-20 shadow-xl bg-base-100 drop-shadow-2xl shadow-indigo-400'>
