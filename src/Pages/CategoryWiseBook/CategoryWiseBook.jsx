@@ -1,13 +1,21 @@
 import { RxBox } from "react-icons/rx";
 import { Link, useParams } from "react-router-dom";
 import Retings from "../../Component/Ratings/Retings";
-import useAllBooks from "../../hooks/useAllBooks";
 import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
+import useAxios from "../../hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const CategoryWiseBook = () => {
+   const axios = useAxios()
    const { categoryName } = useParams()
-   const { data, isLoading } = useAllBooks(categoryName)
-   const categoryBook = data?.result
+
+   const { data: categoryBook, isLoading, } = useQuery({
+      queryKey: ['allCategoryBooks', categoryName],
+      queryFn: async () => {
+         const response = await axios.get(`/allCategoryBook?categoryName=${categoryName}`);
+         return response.data;
+      }
+   })
 
    return (
       <div>

@@ -9,13 +9,13 @@ import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
 import useAxios from "../../hooks/useAxios";
 
 const SingleBookCard = ({ singleBook, refetch, isLoading }) => {
+
    const { user } = useAuth()
    const userEmail = user.email;
    const userName = user.displayName;
    const axios = useAxios()
 
    const { _id: id, BookName, AuthorName, BookImage, Category, Quantity, Ratings, ShortDescription, LongDescription } = singleBook;
-
    // const [borrowrdDate, setBorrowedDate] = useState()
 
    const handleBorrowBook = () => {
@@ -50,6 +50,7 @@ const SingleBookCard = ({ singleBook, refetch, isLoading }) => {
                userEmail
             };
             if (result.isConfirmed) {
+
                axios.post('/borrowBook', borrowedBookInfo)
                   .then(response => {
                      if (response.data.insertedId) {

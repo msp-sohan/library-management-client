@@ -8,6 +8,7 @@ const AddBook = () => {
    const { user } = useAuth();
    const { register, handleSubmit, reset } = useForm();
    const onSubmit = data => {
+      data.Quantity = parseInt(data.Quantity);
       data.userEmail = user.email;
       axios.post('/allBooks', data)
          .then((res) => {

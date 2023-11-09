@@ -9,7 +9,7 @@ const ReadBook = () => {
    const [pdfContent, setPdfContent] = useState([]);
    const { data, isLoading, refetch } = useBookById({ id });
 
-   const text = data?.result?.[0]?.LongDescription;
+   const text = data?.[0]?.LongDescription;
 
    useEffect(() => {
       if (!text) return;
@@ -38,7 +38,7 @@ const ReadBook = () => {
          <h1 className="text-2xl font-bold mb-4 text-center">Read Book</h1>
          <div className='grid gap-6 grid-cols-1 md:grid-cols-7 lg:grid-cols-12'>
             <div className='md:col-span-3 lg:col-span-4'>
-               <img src={data?.result?.[0]?.BookImage} alt="w-96" />
+               <img src={data?.[0]?.BookImage} alt="w-96" />
             </div>
             <div className='md:col-span-4 lg:col-span-8'>
                {pdfContent.map((pageText, index) => (

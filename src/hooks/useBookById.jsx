@@ -4,9 +4,9 @@ import useAxios from "./useAxios";
 const useBookById = ({ id }) => {
    const axios = useAxios()
    const { data, isLoading, refetch } = useQuery({
-      queryKey: ['allBook', id],
+      queryKey: ['singlebook', id],
       queryFn: async () => {
-         const response = await axios.get(`/allBooks?id=${id}`);
+         const response = await axios.get(`/singleBook?id=${id}`);
          return response.data;
       }
    });

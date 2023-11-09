@@ -11,7 +11,7 @@ const UpdateBook = () => {
    const { id } = useParams()
    const axios = useAxios()
    const { data, isLoading, refetch } = useBookById({ id })
-   const updateBook = data?.result
+   const updateBook = data?.[0]
 
    const { register, handleSubmit } = useForm();
    const onSubmit = data => {
@@ -36,7 +36,7 @@ const UpdateBook = () => {
       return <LoaderSpinner />;
    }
 
-   const { BookName, AuthorName, Category, Ratings, BookImage } = updateBook[0] || {};
+   const { BookName, AuthorName, Category, Ratings, BookImage } = updateBook || {};
 
    return (
       <div className='md:mt-20 xl:mt-40 container xl:mx-auto px-3 xl:px-20 shadow-xl bg-base-100 drop-shadow-2xl shadow-indigo-400'>

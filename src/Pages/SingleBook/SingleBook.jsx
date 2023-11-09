@@ -6,8 +6,8 @@ import useBookById from "../../hooks/useBookById";
 
 const SingleBook = () => {
    const { id } = useParams()
-   const { data, isLoading, refetch } = useBookById({ id })
-   const Books = data?.result
+   const { data: Books, isLoading, refetch } = useBookById({ id })
+
 
    return (
       <div>
