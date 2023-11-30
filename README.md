@@ -1,3 +1,60 @@
+# The Library - Online Library Management System
+
+The Library is an online library management website where users can explore and find books across different categories.
+
+## Live Site
+
+Explore The Library: [The Library](https://the-library-0.netlify.app/)
+
+## Repository Links
+
+-  [Client Side Repository](https://github.com/mspsohan/library-managements-client)
+-  [Server Side Repository](https://github.com/mspsohan/library-management-server)
+
+## Features and Functionalities
+
+### Home Page
+
+-  **Active Routing System:** The navbar employs an active routing system, indicating the active page with a distinct appearance.
+
+-  **Dark/Light Theme Toggle:** Users can switch between dark and light themes using the toggle button on the navbar.
+
+-  **User Information:** The right side of the navbar displays user information if logged in; otherwise, a login button is shown.
+
+-  **Swiper Slider Banner:** The banner section features a swiper slider that navigates to different sections.
+
+-  **Categories Books:** Four categories of books are displayed below the slider, each with an image, category name, and a "Show More Books" button. Clicking this button redirects users to a page with books from the selected category. Logged-in users are directly taken to the book page, while non-logged-in users are redirected to the login page.
+
+-  **About Us and Testimonial Sections:** Additional sections provide information about the website and user testimonials.
+
+### Add Book Page
+
+-  **Add Book Functionality:** Valid users can add books to the library.
+
+### All Books Page
+
+-  **View All Books:** Valid users can view all books, filter by category and availability.
+
+### Borrowed Book Functionality
+
+-  **Borrow and Return Books:** Users can borrow books, and borrowed books are stored on a dedicated page. Upon returning a book, the quantity in the main library increases.
+
+### Authentication
+
+-  **JWT Token:** User authentication is implemented using JSON Web Tokens. Access to specific routes, such as All Books and Add Book, requires a valid token.
+
+### Registration and Login
+
+-  **User Registration:** Registration requires full name, profile image, valid email, and a password meeting specified criteria.
+
+-  **Toggle Button:** The registration and login forms include a toggle button for easy navigation between the login and registration pages.
+
+### Database and Server
+
+-  **MongoDB:** Data is stored using MongoDB.
+
+-  **Express.js Server:** API handling is done on an Express.js server.
+
 <!-- ### Website Name: [The Library](https://the-library-msp.netlify.app)
 
 ### website Live Link: https://the-library-msp.netlify.app/
