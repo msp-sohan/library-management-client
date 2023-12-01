@@ -86,7 +86,7 @@ const Navbar = () => {
 
 				{/* Navbar Center */}
 				<div className="md:pl-24 lg:pl-0">
-					<Link to="/"><img src="https://i.ibb.co/drcF6w7/library.png" alt="" className='w-36 h-16 lg:w-44 ml-2 bg-white rounded-md' /></Link>
+					<Link to="/"><img src="https://i.ibb.co/drcF6w7/library.png" alt="" className='w-36 h-12 md:h-14 xl:h-16 lg:w-44 ml-2 bg-white rounded-md' /></Link>
 				</div>
 
 				{/* Navbar End */}

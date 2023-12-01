@@ -4,11 +4,12 @@ import Swal from 'sweetalert2';
 import useAxios from '../../hooks/useAxios';
 
 const BorrowBookCard = ({ borrowBook, refetch }) => {
-   const { _id, BookName, AuthorName, BookImage, Category, borrowrdDate, returnDate } = borrowBook;
+   const { id, BookName, AuthorName, BookImage, Category, borrowrdDate, returnDate } = borrowBook;
+
    const axios = useAxios()
 
    const handleReturnBook = () => {
-      axios.delete(`/borrowedBook/${_id}`).then((response) => {
+      axios.delete(`/borrowedBook/${id}`).then((response) => {
          if (response.data.deletedCount > 0) {
             refetch()
             Swal.fire({

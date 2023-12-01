@@ -1,14 +1,23 @@
-import { RxBox } from "react-icons/rx";
 import { Link, useParams } from "react-router-dom";
 import Retings from "../../Component/Ratings/Retings";
 import LoaderSpinner from "../../Component/LoaderSpinner/LoaderSpinner";
+import PageBanner from "../../Component/PageBanner/PageBanner";
+
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 
+// import useAllBooks from "../../hooks/useAllBooks";
+
 const CategoryWiseBook = () => {
-   const axios = useAxios()
    const { categoryName } = useParams()
 
+   // Use Hook
+
+   // const { data: categoryBook, isLoading, } = useAllBooks(categoryName)
+
+   // Fetch Directly
+
+   const axios = useAxios()
    const { data: categoryBook, isLoading, } = useQuery({
       queryKey: ['allCategoryBooks', categoryName],
       queryFn: async () => {
@@ -20,19 +29,7 @@ const CategoryWiseBook = () => {
    return (
       <div>
          {/* banner */}
-         <div className="relative bg-black">
-            <img src="https://quomodosoft.com/html/library/images/slide/slide1.jpg" alt="" className="opacity-40 md:h-[50vh] xl:h-[60vh] w-full" />
-            <div className="absolute w-full top-[40%] lg:top-[50%]">
-               <h2 className="text-white text-2xl md:text-4xl text-center">Books of your Category</h2>
-               <div className='flex items-center justify-center pt-5'>
-                  <hr className='bg-black w-20 xl:w-40' />
-                  <RxBox className='rotate-45 text-xl text-white'></RxBox>
-                  <hr className='bg-black w-4' />
-                  <RxBox className='rotate-45 text-xl text-white'></RxBox>
-                  <hr className='bg-black w-20 xl:w-40' />
-               </div>
-            </div>
-         </div>
+         <PageBanner title="Books of your Category"></PageBanner>
          {/* Books */}
          <div>
             {
