@@ -55,6 +55,12 @@ Explore The Library: [The Library](https://the-library-0.netlify.app/)
 
 -  **Express.js Server:** API handling is done on an Express.js server.
 
+<!-- ### Database and Server
+
+-  **MongoDB:** Data is stored using MongoDB.
+
+-  **Express.js Server:** API handling is done on an Express.js server. -->
+
 <!-- ### Website Name: [The Library](https://the-library-msp.netlify.app)
 
 ### website Live Link: https://the-library-msp.netlify.app/
