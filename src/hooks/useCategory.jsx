@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
 import useAxios from "./useAxios";
 
 const useCategory = () => {
    const axios = useAxios()
    const { data, isLoading, refetch } = useQuery({
-      queryKey: ['category'],
+      queryKey: ['categorys'],
       queryFn: async () => {
-         const response = await axios.get('/categories');
-         return response.data;
+         const { data } = await axios.get('/categories');
+         return data;
       }
    })
    return { data, isLoading, refetch }

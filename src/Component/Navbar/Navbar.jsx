@@ -116,8 +116,8 @@ const Navbar = () => {
 							</div>
 						</label>
 						{user && (
-							<ul tabIndex={0} className="menu absolute right-0 text-left menu-sm text-black space-y-3 dropdown-content mt-3 z-50 p-2 shadow bg-slate-200 rounded-box w-48">
-								<h2 className="text-lg flex items-center gap-4">
+							<ul tabIndex={0} className="menu absolute right-0 text-left menu-sm text-black space-y-3 dropdown-content mt-4 z-50 p-2 shadow bg-slate-200 rounded-box w-48">
+								<h2 className="text-lg flex items-center gap-4 px-2">
 									<FaUserTie></FaUserTie> {user?.displayName ? user?.displayName : user?.email}
 								</h2>
 								<hr className="border border-black w-full" />

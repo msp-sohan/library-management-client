@@ -4,6 +4,7 @@ import useCategory from "../../hooks/useCategory";
 import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 
 const Categories = () => {
+
    const { data: categories, isLoading } = useCategory()
    if (isLoading) {
       return <LoaderSpinner></LoaderSpinner>
