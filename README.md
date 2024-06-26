@@ -4,7 +4,7 @@ The Library is an online library management website where users can explore and 
 
 ## Live Site
 
-Explore The Library: [The Library](https://the-library-0.netlify.app/)
+Explore The Library: [The Library](https://the-library-hub.netlify.app)
 
 ## Repository Links
 
